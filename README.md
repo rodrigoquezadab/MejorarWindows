@@ -99,6 +99,7 @@ Puedes ejecutar el script aplicando un perfil predefinido sin interactuar con lo
 ```
 
 Presets disponibles:
+* **Office**: Perfil de máxima ligereza para equipos de oficina, trabajo y computadoras antiguas/de bajos recursos. Desactiva todas las animaciones de ventanas y menús, todas las notificaciones y sugerencias, transparencias acrílicas de GPU, telemetría, servicios innecesarios, búsqueda web de Bing en menú inicio, widgets, Copilot y servicios de juegos (Xbox), maximizando la fluidez y respuesta del sistema para ofimática y trabajo.
 * **Standard**: Perfil equilibrado con las optimizaciones completas de rendimiento y privacidad recomendadas.
 * **Minimal**: Modificaciones básicas esenciales.
 * **Advanced**: Modificaciones profundas orientadas a usuarios avanzados.

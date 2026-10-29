@@ -9689,6 +9689,7 @@ function Invoke-WPFButtonAction {
         "WPFCollapseAllCategories" {Invoke-WPFToggleAllCategories -Action "Collapse"}
         "WPFExpandAllCategories" {Invoke-WPFToggleAllCategories -Action "Expand"}
         "WPFStandard" {Invoke-WPFPresets "Standard" -checkboxfilterpattern "WPFTweak*"}
+        "WPFOffice" {Invoke-WPFPresets "Office" -checkboxfilterpattern "WPFTweak*"}
         "WPFMinimal" {Invoke-WPFPresets "Minimal" -checkboxfilterpattern "WPFTweak*"}
         "WPFAdvanced" {Invoke-WPFPresets "Advanced" -checkboxfilterpattern "WPFTweak*"}
         "WPFClearTweaksSelection" {Invoke-WPFPresets -imported $true -checkboxfilterpattern "WPFTweak*"}
@@ -15178,7 +15179,31 @@ $sync.configs.preset = @'
                         "WPFAppxMicrosoft_BingNews",
                         "WPFAppxMicrosoft_Copilot",
                         "WPFAppxMicrosoft_BingSearch"
-                    ]
+                    ],
+    "Office":  [
+                   "WPFTweaksDisableAllAnimations",
+                   "WPFTweaksDisableNotificationsAndTips",
+                   "WPFTweaksDisableNotifications",
+                   "WPFTweaksDisableTransparency",
+                   "WPFTweaksVisualFXPerformance",
+                   "WPFTweaksBackgroundApps",
+                   "WPFTweaksPrivacySuite",
+                   "WPFTweaksTele",
+                   "WPFTweaksServices",
+                   "WPFTweaksDVR",
+                   "WPFTweaksDisableStoreSearch",
+                   "WPFTweaksWidget",
+                   "WPFTweaksWindowsAI",
+                   "WPFTweaksConsumerFeatures",
+                   "WPFTweaksDeliveryOptimization",
+                   "WPFTweaksActivity",
+                   "WPFTweaksLocation",
+                   "WPFTweaksFastBootTime",
+                   "WPFTweaksStorageAndTempCleanup",
+                   "WPFTweaksDiskCleanup",
+                   "WPFTweaksDeleteTempFiles",
+                   "WPFTweaksEndTaskOnTaskbar"
+               ]
 }
 '@ | ConvertFrom-Json
 $sync.configs.standardtweaks = @'
@@ -18096,7 +18121,51 @@ $sync.configs.tweaks = @'
                                              "\r\n      # Enable Defender Auto Sample Submission\r\n      Set-MpPreference -SubmitSamplesConsent 1\r\n\r\n      # Enable PowerShell 7 telemetry\r\n      [Environment]::SetEnvironmentVariable(\u0027POWERSHELL_TELEMETRY_OPTOUT\u0027, \u0027\u0027, \u0027Machine\u0027)\r\n      "
                                          ],
                           "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/telemetry"
-                      }
+                      },
+    "WPFTweaksDisableAllAnimations":  {
+                                          "Content":  "Disable All Windows Animations \u0026 Menu Delays",
+                                          "Description":  "Completely disables window minimize/maximize animations, taskbar animations, and removes the menu popup delay (MenuShowDelay = 0) for instantaneous responsiveness on low-spec PCs.",
+                                          "category":  "Standard Tweaks",
+                                          "panel":  "1",
+                                          "Order":  "a013_",
+                                          "registry":  [
+                                                           {
+                                                               "Path":  "HKCU:\\Control Panel\\Desktop\\WindowMetrics",
+                                                               "Name":  "MinAnimate",
+                                                               "Type":  "String",
+                                                               "Value":  "0",
+                                                               "OriginalValue":  "1"
+                                                           },
+                                                           {
+                                                               "Path":  "HKCU:\\Control Panel\\Desktop",
+                                                               "Name":  "MenuShowDelay",
+                                                               "Type":  "String",
+                                                               "Value":  "0",
+                                                               "OriginalValue":  "400"
+                                                           },
+                                                           {
+                                                               "Path":  "HKCU:\\Software\\Microsoft\\Windows\\DWM",
+                                                               "Name":  "DisallowAnimations",
+                                                               "Type":  "DWord",
+                                                               "Value":  "1",
+                                                               "OriginalValue":  "0"
+                                                           },
+                                                           {
+                                                               "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                               "Name":  "TaskbarAnimations",
+                                                               "Type":  "DWord",
+                                                               "Value":  "0",
+                                                               "OriginalValue":  "1"
+                                                           },
+                                                           {
+                                                               "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects",
+                                                               "Name":  "VisualFXSetting",
+                                                               "Type":  "DWord",
+                                                               "Value":  "2",
+                                                               "OriginalValue":  "0"
+                                                           }
+                                                       ]
+                                      }
 }
 '@ | ConvertFrom-Json
 $inputXML = @'
@@ -19529,6 +19598,7 @@ $inputXML = @'
                                 <Label Content="Recommended Selections:" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
                                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2,0,0">
                                     <Button Name="WPFstandard" Content=" Standard " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFOffice" Content=" Office / Low-Spec " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFminimal" Content=" Minimal " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFAdvanced" Content=" Advanced " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                     <Button Name="WPFClearTweaksSelection" Content=" Clear " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>

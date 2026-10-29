@@ -63,5 +63,29 @@
                         "WPFAppxMicrosoft_BingNews",
                         "WPFAppxMicrosoft_Copilot",
                         "WPFAppxMicrosoft_BingSearch"
-                    ]
+                    ],
+    "Office":  [
+                   "WPFTweaksDisableAllAnimations",
+                   "WPFTweaksDisableNotificationsAndTips",
+                   "WPFTweaksDisableNotifications",
+                   "WPFTweaksDisableTransparency",
+                   "WPFTweaksVisualFXPerformance",
+                   "WPFTweaksBackgroundApps",
+                   "WPFTweaksPrivacySuite",
+                   "WPFTweaksTele",
+                   "WPFTweaksServices",
+                   "WPFTweaksDVR",
+                   "WPFTweaksDisableStoreSearch",
+                   "WPFTweaksWidget",
+                   "WPFTweaksWindowsAI",
+                   "WPFTweaksConsumerFeatures",
+                   "WPFTweaksDeliveryOptimization",
+                   "WPFTweaksActivity",
+                   "WPFTweaksLocation",
+                   "WPFTweaksFastBootTime",
+                   "WPFTweaksStorageAndTempCleanup",
+                   "WPFTweaksDiskCleanup",
+                   "WPFTweaksDeleteTempFiles",
+                   "WPFTweaksEndTaskOnTaskbar"
+               ]
 }

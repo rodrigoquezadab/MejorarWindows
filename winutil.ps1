@@ -15523,7 +15523,13 @@ $sync.configs.standardtweaks = @'
                                                               "Value":  "0",
                                                               "OriginalValue":  "1"
                                                           }
-                                                      ]
+                                                      ],
+                                         "InvokeScript":  [
+                                                              "$code = @\"\nusing System;\nusing System.Runtime.InteropServices;\npublic class Win32Visuals {\n    [DllImport(\"user32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);\n}\n\"@\nAdd-Type -TypeDefinition $code -ErrorAction SilentlyContinue\n[Win32Visuals]::SystemParametersInfo(0x1043, 0, [IntPtr]::Zero, 3)\nStop-Process -Name explorer -Force"
+                                                          ],
+                                         "UndoScript":  [
+                                                            "$code = @\"\nusing System;\nusing System.Runtime.InteropServices;\npublic class Win32Visuals {\n    [DllImport(\"user32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);\n}\n\"@\nAdd-Type -TypeDefinition $code -ErrorAction SilentlyContinue\n[Win32Visuals]::SystemParametersInfo(0x1043, 1, [IntPtr]::Zero, 3)\nStop-Process -Name explorer -Force"
+                                                        ]
                                      },
     "WPFTweaksMouseAcceleration":  {
                                        "Content":  "Desactivar Aceleracion de Raton (Raw Input 1:1)",
@@ -17871,7 +17877,13 @@ $sync.configs.tweaks = @'
                                                               "Value":  "0",
                                                               "OriginalValue":  "1"
                                                           }
-                                                      ]
+                                                      ],
+                                         "InvokeScript":  [
+                                                              "$code = @\"\nusing System;\nusing System.Runtime.InteropServices;\npublic class Win32Visuals {\n    [DllImport(\"user32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);\n}\n\"@\nAdd-Type -TypeDefinition $code -ErrorAction SilentlyContinue\n[Win32Visuals]::SystemParametersInfo(0x1043, 0, [IntPtr]::Zero, 3)\nStop-Process -Name explorer -Force"
+                                                          ],
+                                         "UndoScript":  [
+                                                            "$code = @\"\nusing System;\nusing System.Runtime.InteropServices;\npublic class Win32Visuals {\n    [DllImport(\"user32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);\n}\n\"@\nAdd-Type -TypeDefinition $code -ErrorAction SilentlyContinue\n[Win32Visuals]::SystemParametersInfo(0x1043, 1, [IntPtr]::Zero, 3)\nStop-Process -Name explorer -Force"
+                                                        ]
                                      },
     "WPFTweaksMouseAcceleration":  {
                                        "Content":  "Desactivar Aceleracion de Raton (Raw Input 1:1)",
@@ -18164,7 +18176,13 @@ $sync.configs.tweaks = @'
                                                                "Value":  "2",
                                                                "OriginalValue":  "0"
                                                            }
-                                                       ]
+                                                       ],
+                                          "InvokeScript":  [
+                                                               "$code = @\"\nusing System;\nusing System.Runtime.InteropServices;\npublic class Win32Visuals {\n    [DllImport(\"user32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);\n}\n\"@\nAdd-Type -TypeDefinition $code -ErrorAction SilentlyContinue\n[Win32Visuals]::SystemParametersInfo(0x1043, 0, [IntPtr]::Zero, 3)\nStop-Process -Name explorer -Force"
+                                                           ],
+                                          "UndoScript":  [
+                                                             "$code = @\"\nusing System;\nusing System.Runtime.InteropServices;\npublic class Win32Visuals {\n    [DllImport(\"user32.dll\", SetLastError = true)]\n    [return: MarshalAs(UnmanagedType.Bool)]\n    public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);\n}\n\"@\nAdd-Type -TypeDefinition $code -ErrorAction SilentlyContinue\n[Win32Visuals]::SystemParametersInfo(0x1043, 1, [IntPtr]::Zero, 3)\nStop-Process -Name explorer -Force"
+                                                         ]
                                       }
 }
 '@ | ConvertFrom-Json

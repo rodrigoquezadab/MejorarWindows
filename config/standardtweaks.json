@@ -1,7 +1,7 @@
 ﻿{
     "WPFTweaksDVR":  {
-                         "Content":  "Desactivar GameDVR y Xbox Game Bar",
-                         "Description":  "Desactiva la barra Xbox Game Bar, grabaciones en segundo plano y superposiciones de juegos para eliminar input lag y consumo innecesario de recursos.",
+                         "Content":  "Disable GameDVR and Xbox Game Bar",
+                         "Description":  "Disables Xbox Game Bar, background recording, and Game DVR overlays to eliminate input lag and save resources.",
                          "category":  "Standard Tweaks",
                          "panel":  "1",
                          "Order":  "a005_",
@@ -37,8 +37,8 @@
                                       ]
                      },
     "WPFTweaksGameModeAndHAGS":  {
-                                     "Content":  "Activar Modo Juego y Programacion de GPU (HAGS)",
-                                     "Description":  "Activa la aceleracion por hardware para GPU (HAGS) y el modo de juego de Windows para reducir la latencia y mejorar los FPS en aplicaciones pesadas y juegos.",
+                                     "Content":  "Enable Game Mode and Hardware GPU Scheduling (HAGS)",
+                                     "Description":  "Enables Windows Game Mode and Hardware-Accelerated GPU Scheduling (HAGS) for lower latency and smoother FPS.",
                                      "category":  "Standard Tweaks",
                                      "panel":  "1",
                                      "Order":  "a006_",
@@ -67,8 +67,8 @@
                                                   ]
                                  },
     "WPFTweaksDisableNotificationsAndTips":  {
-                                                 "Content":  "Desactivar Sugerencias, Trucos y Notificaciones Promocionales",
-                                                 "Description":  "Desactiva avisos emergentes, sugerencias de Windows, anuncios en pantalla de bloqueo y mensajes de bienvenida del sistema.",
+                                                 "Content":  "Disable Windows Tips, Tricks and Promotional Notifications",
+                                                 "Description":  "Disables notification popups, lock screen tips, suggestions, and promotional system messages.",
                                                  "category":  "Standard Tweaks",
                                                  "panel":  "1",
                                                  "Order":  "a007_",
@@ -111,8 +111,8 @@
                                                               ]
                                              },
     "WPFTweaksDisableTransparency":  {
-                                         "Content":  "Desactivar Efectos de Transparencia y Acrilico",
-                                         "Description":  "Desactiva las transparencias del menu inicio, barra de tareas y ventanas, reduciendo significativamente el consumo de GPU y memoria por DWM.",
+                                         "Content":  "Disable Transparency \u0026 Acrylic Effects (DWM)",
+                                         "Description":  "Disables Start Menu, Taskbar, and window transparency effects, significantly freeing up GPU and RAM.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a008_",
@@ -127,8 +127,8 @@
                                                       ]
                                      },
     "WPFTweaksBackgroundApps":  {
-                                    "Content":  "Desactivar Aplicaciones en Segundo Plano",
-                                    "Description":  "Impide que las aplicaciones de la Microsoft Store (UWP) se ejecuten en segundo plano consumiendo procesador y memoria RAM silenciosamente.",
+                                    "Content":  "Disable Background Apps",
+                                    "Description":  "Prevents Microsoft Store (UWP) apps from running in the background and silently consuming CPU and RAM.",
                                     "category":  "Standard Tweaks",
                                     "panel":  "1",
                                     "Order":  "a009_",
@@ -157,8 +157,8 @@
                                                  ]
                                 },
     "WPFTweaksPrivacySuite":  {
-                                  "Content":  "Desactivar Rastreo de Privacidad, ID de Publicidad y Telemetria",
-                                  "Description":  "Desactiva el ID publicitario de Windows, el seguimiento de apertura de aplicaciones, telemetria y recoleccion de escritura/teclado.",
+                                  "Content":  "Disable Privacy Tracking, Advertising ID and Telemetry",
+                                  "Description":  "Disables Windows advertising ID, app launch tracking, and diagnostic telemetry collection.",
                                   "category":  "Standard Tweaks",
                                   "panel":  "1",
                                   "Order":  "a010_",
@@ -236,8 +236,8 @@
                                                ]
                               },
     "WPFTweaksDeliveryOptimization":  {
-                                          "Content":  "Desactivar Optimizacion de Distribucion P2P (Windows Update)",
-                                          "Description":  "Evita que tu ordenador comparta actualizaciones de Windows con otros equipos a traves de Internet, previniendo lag y picos de ping en la red.",
+                                          "Content":  "Disable Windows Update P2P Delivery Optimization",
+                                          "Description":  "Prevents your PC from uploading Windows updates to other computers across the Internet, stopping ping spikes and network lag.",
                                           "category":  "Standard Tweaks",
                                           "panel":  "1",
                                           "Order":  "a011_",
@@ -259,8 +259,8 @@
                                                        ]
                                       },
     "WPFTweaksVisualFXPerformance":  {
-                                         "Content":  "Efectos Visuales de Maximo Rendimiento (Preservando Fuentes Suaves)",
-                                         "Description":  "Ajusta Windows para obtener el mejor rendimiento visual manteniendo el suavizado de fuentes en pantalla (ClearType) y las miniaturas de imagenes.",
+                                         "Content":  "Visual Effects for Best Performance (Keep Smooth Fonts \u0026 Thumbnails)",
+                                         "Description":  "Tunes Windows visual effects for maximum performance while keeping font smoothing (ClearType) and image thumbnails.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a012_",
@@ -323,8 +323,8 @@
                                                         ]
                                      },
     "WPFTweaksMouseAcceleration":  {
-                                       "Content":  "Desactivar Aceleracion de Raton (Raw Input 1:1)",
-                                       "Description":  "Desmarca \u0027Mejorar la precision del puntero\u0027 y fija la velocidad en 6/11 para obtener una respuesta 1:1 precisa sin saltos ni aceleracion artificial.",
+                                       "Content":  "Disable Mouse Pointer Precision (Raw 1:1 Input)",
+                                       "Description":  "Disables \u0027Enhance pointer precision\u0027 and locks sensitivity to 6/11 for pure 1:1 raw mouse response without artificial acceleration.",
                                        "category":  "Standard Tweaks",
                                        "panel":  "1",
                                        "Order":  "a013_",
@@ -360,8 +360,8 @@
                                                     ]
                                    },
     "WPFTweaksUltimatePerformance":  {
-                                         "Content":  "Desbloquear y Activar Plan de Maximo Rendimiento",
-                                         "Description":  "Desbloquea el esquema de energia oculto \u0027Maximo Rendimiento\u0027 (Ultimate Performance), eliminando micropausas y ahorros de energia agresivos del procesador.",
+                                         "Content":  "Unlock \u0026 Enable Ultimate Performance Power Plan",
+                                         "Description":  "Unlocks and activates the hidden Ultimate Performance power scheme to eliminate micro-stutters and aggressive core throttling.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a014_",
@@ -384,8 +384,8 @@
                                                         ]
                                      },
     "WPFTweaksFastBootTime":  {
-                                  "Content":  "Arranque Rapido y Cierre Acelerado al Apagar",
-                                  "Description":  "Reduce el tiempo de espera de arranque a 3 segundos (msconfig) y acelera el cierre de tareas colgadas al reiniciar o apagar el equipo.",
+                                  "Content":  "Fast Boot Time (3s Timeout) \u0026 Fast App Shutdown",
+                                  "Description":  "Reduces boot menu timeout to 3 seconds (msconfig) and accelerates termination of hung apps on restart/shutdown.",
                                   "category":  "Standard Tweaks",
                                   "panel":  "1",
                                   "Order":  "a015_",
@@ -427,8 +427,8 @@
                                                  ]
                               },
     "WPFTweaksStorageAndTempCleanup":  {
-                                           "Content":  "Activar Sensor de Almacenamiento y Limpieza de Temporales",
-                                           "Description":  "Habilita la limpieza automatica periodica de la papelera y purga de archivos temporales del sistema.",
+                                           "Content":  "Enable Storage Sense \u0026 Temp Files Cleanup",
+                                           "Description":  "Enables automatic disk cleanup and purges temporary files from %TEMP%.",
                                            "category":  "Standard Tweaks",
                                            "panel":  "1",
                                            "Order":  "a016_",
@@ -454,8 +454,8 @@
                                                             ]
                                        },
     "WPFTweaksServices":  {
-                              "Content":  "Optimizacion Segura de Servicios de Windows",
-                              "Description":  "Configura en manual o deshabilitado servicios no esenciales de diagnostico, telemetria y mapas (DiagTrack, MapsBroker, Fax, etc.).",
+                              "Content":  "Safe Windows Services Optimization",
+                              "Description":  "Sets safe non-essential diagnostics and telemetry services (DiagTrack, MapsBroker, Fax, etc.) to Manual or Disabled.",
                               "category":  "Standard Tweaks",
                               "panel":  "1",
                               "Order":  "a017_",

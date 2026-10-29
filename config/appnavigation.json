@@ -1,83 +1,83 @@
 ﻿{
-    "WPFInstall":  {
-                       "Content":  "Instalar / Actualizar Apps",
-                       "Category":  "____Acciones",
-                       "Type":  "Button",
-                       "Order":  "1",
-                       "Description":  "Instala o actualiza las aplicaciones seleccionadas"
-                   },
-    "WPFUninstall":  {
-                         "Content":  "Desinstalar Apps",
-                         "Category":  "____Acciones",
-                         "Type":  "Button",
-                         "Order":  "2",
-                         "Description":  "Desinstala las aplicaciones seleccionadas"
-                     },
-    "WPFInstallUpgrade":  {
-                              "Content":  "Actualizar Todas las Apps",
-                              "Category":  "____Acciones",
-                              "Type":  "Button",
-                              "Order":  "3",
-                              "Description":  "Actualiza todas las aplicaciones instaladas a la ultima version"
-                          },
-    "WingetRadioButton":  {
-                              "Content":  "WinGet",
-                              "Category":  "__Gestor de Paquetes",
-                              "Type":  "RadioButton",
-                              "GroupName":  "PackageManagerGroup",
-                              "Checked":  true,
-                              "Order":  "1",
-                              "Description":  "Usar WinGet como gestor de paquetes oficial"
-                          },
-    "ChocoRadioButton":  {
-                             "Content":  "Chocolatey",
-                             "Category":  "__Gestor de Paquetes",
-                             "Type":  "RadioButton",
-                             "GroupName":  "PackageManagerGroup",
-                             "Checked":  false,
-                             "Order":  "2",
-                             "Description":  "Usar Chocolatey como gestor de paquetes"
-                         },
-    "WPFCollapseAllCategories":  {
-                                     "Content":  "Colapsar Categorias",
-                                     "Category":  "__Seleccion",
-                                     "Type":  "Button",
-                                     "Order":  "1",
-                                     "Description":  "Colapsa todas las categorias de aplicaciones"
-                                 },
-    "WPFExpandAllCategories":  {
-                                   "Content":  "Expandir Categorias",
-                                   "Category":  "__Seleccion",
-                                   "Type":  "Button",
-                                   "Order":  "2",
-                                   "Description":  "Expande todas las categorias de aplicaciones"
-                               },
-    "WPFClearInstallSelection":  {
-                                     "Content":  "Limpiar Seleccion",
-                                     "Category":  "__Seleccion",
-                                     "Type":  "Button",
-                                     "Order":  "3",
-                                     "Description":  "Limpia la seleccion actual de aplicaciones"
-                                 },
-    "WPFGetInstalled":  {
-                            "Content":  "Mostrar Apps Instaladas",
-                            "Category":  "__Seleccion",
-                            "Type":  "Button",
-                            "Order":  "4",
-                            "Description":  "Muestra las aplicaciones que ya se encuentran instaladas en el sistema"
-                        },
-    "WPFselectedAppsButton":  {
-                                  "Content":  "Apps Seleccionadas: 0",
-                                  "Category":  "__Seleccion",
-                                  "Type":  "Button",
-                                  "Order":  "5",
-                                  "Description":  "Muestra la cantidad de aplicaciones seleccionadas"
-                              },
-    "WPFInstallFOSSInfo":  {
-                               "Content":  "Software Libre y de Codigo Abierto (FOSS)",
-                               "Category":  "__Seleccion",
-                               "Type":  "Note",
-                               "Order":  "0",
-                               "Description":  "Informacion sobre la etiqueta #FOSS en las aplicaciones disponibles"
-                           }
+    "WPFInstall": {
+        "Content": "Install/Upgrade Applications",
+        "Category": "____Actions",
+        "Type": "Button",
+        "Order": "1",
+        "Description": "Install or upgrade the selected applications"
+    },
+    "WPFUninstall": {
+        "Content": "Uninstall Applications",
+        "Category": "____Actions",
+        "Type": "Button",
+        "Order": "2",
+        "Description": "Uninstall the selected applications"
+    },
+    "WPFInstallUpgrade": {
+        "Content": "Upgrade all Applications",
+        "Category": "____Actions",
+        "Type": "Button",
+        "Order": "3",
+        "Description": "Upgrade all applications to the latest version"
+    },
+    "WingetRadioButton": {
+        "Content": "WinGet",
+        "Category": "__Package Manager",
+        "Type": "RadioButton",
+        "GroupName": "PackageManagerGroup",
+        "Checked": true,
+        "Order": "1",
+        "Description": "Use WinGet for package management"
+    },
+    "ChocoRadioButton": {
+        "Content": "Chocolatey",
+        "Category": "__Package Manager",
+        "Type": "RadioButton",
+        "GroupName": "PackageManagerGroup",
+        "Checked": false,
+        "Order": "2",
+        "Description": "Use Chocolatey for package management"
+    },
+    "WPFCollapseAllCategories": {
+        "Content": "Collapse All Categories",
+        "Category": "__Selection",
+        "Type": "Button",
+        "Order": "1",
+        "Description": "Collapse all application categories"
+    },
+    "WPFExpandAllCategories": {
+        "Content": "Expand All Categories",
+        "Category": "__Selection",
+        "Type": "Button",
+        "Order": "2",
+        "Description": "Expand all application categories"
+    },
+    "WPFClearInstallSelection": {
+        "Content": "Clear Selection",
+        "Category": "__Selection",
+        "Type": "Button",
+        "Order": "3",
+        "Description": "Clear the selection of applications"
+    },
+    "WPFGetInstalled": {
+        "Content": "Show Installed Apps",
+        "Category": "__Selection",
+        "Type": "Button",
+        "Order": "4",
+        "Description": "Show installed applications"
+    },
+    "WPFselectedAppsButton": {
+        "Content": "Selected Apps: 0",
+        "Category": "__Selection",
+        "Type": "Button",
+        "Order": "5",
+        "Description": "Show the selected applications"
+    },
+    "WPFInstallFOSSInfo": {
+        "Content": "Free and Open Source Software",
+        "Category": "__Selection",
+        "Type": "Note",
+        "Order": "0",
+        "Description": "Information about the #FOSS label on application entries"
+    }
 }

@@ -212,8 +212,8 @@ function Start-WinUtilUserInterface {
                 "T" { Invoke-WPFButton "WPFTab2BT"; $keyEventArgs.Handled = $true } # Navigate to Tweaks tab
                 "C" { Invoke-WPFButton "WPFTab3BT"; $keyEventArgs.Handled = $true } # Navigate to Config tab
                 "U" { Invoke-WPFButton "WPFTab4BT"; $keyEventArgs.Handled = $true } # Navigate to Updates tab
-                "W" { Invoke-WPFButton "WPFTab5BT"; .Handled = True } # Navigate to Win11ISO tab
-                "S" { Invoke-WPFButton "WPFTab7BT"; .Handled = True } # Navigate to Standard Tweaks tab
+                "W" { Invoke-WPFButton "WPFTab5BT"; $keyEventArgs.Handled = $true } # Navigate to Win11ISO tab
+                "S" { Invoke-WPFButton "WPFTab7BT"; $keyEventArgs.Handled = $true } # Navigate to Standard Tweaks tab
             }
         }
         # Handle Ctrl key combinations for specific actions

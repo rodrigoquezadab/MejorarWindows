@@ -7859,8 +7859,8 @@ function Start-WinUtilUserInterface {
                 "T" { Invoke-WPFButton "WPFTab2BT"; $keyEventArgs.Handled = $true } # Navigate to Tweaks tab
                 "C" { Invoke-WPFButton "WPFTab3BT"; $keyEventArgs.Handled = $true } # Navigate to Config tab
                 "U" { Invoke-WPFButton "WPFTab4BT"; $keyEventArgs.Handled = $true } # Navigate to Updates tab
-                "W" { Invoke-WPFButton "WPFTab5BT"; .Handled = True } # Navigate to Win11ISO tab
-                "S" { Invoke-WPFButton "WPFTab7BT"; .Handled = True } # Navigate to Standard Tweaks tab
+                "W" { Invoke-WPFButton "WPFTab5BT"; $keyEventArgs.Handled = $true } # Navigate to Win11ISO tab
+                "S" { Invoke-WPFButton "WPFTab7BT"; $keyEventArgs.Handled = $true } # Navigate to Standard Tweaks tab
             }
         }
         # Handle Ctrl key combinations for specific actions
@@ -14325,85 +14325,85 @@ $sync.configs.applications = @'
 $sync.configs.appnavigation = @'
 {
     "WPFInstall":  {
-                       "Content":  "Install/Upgrade Applications",
-                       "Category":  "____Actions",
+                       "Content":  "Instalar / Actualizar Apps",
+                       "Category":  "____Acciones",
                        "Type":  "Button",
                        "Order":  "1",
-                       "Description":  "Install or upgrade the selected applications"
+                       "Description":  "Instala o actualiza las aplicaciones seleccionadas"
                    },
     "WPFUninstall":  {
-                         "Content":  "Uninstall Applications",
-                         "Category":  "____Actions",
+                         "Content":  "Desinstalar Apps",
+                         "Category":  "____Acciones",
                          "Type":  "Button",
                          "Order":  "2",
-                         "Description":  "Uninstall the selected applications"
+                         "Description":  "Desinstala las aplicaciones seleccionadas"
                      },
     "WPFInstallUpgrade":  {
-                              "Content":  "Upgrade all Applications",
-                              "Category":  "____Actions",
+                              "Content":  "Actualizar Todas las Apps",
+                              "Category":  "____Acciones",
                               "Type":  "Button",
                               "Order":  "3",
-                              "Description":  "Upgrade all applications to the latest version"
+                              "Description":  "Actualiza todas las aplicaciones instaladas a la ultima version"
                           },
     "WingetRadioButton":  {
                               "Content":  "WinGet",
-                              "Category":  "__Package Manager",
+                              "Category":  "__Gestor de Paquetes",
                               "Type":  "RadioButton",
                               "GroupName":  "PackageManagerGroup",
                               "Checked":  true,
                               "Order":  "1",
-                              "Description":  "Use WinGet for package management"
+                              "Description":  "Usar WinGet como gestor de paquetes oficial"
                           },
     "ChocoRadioButton":  {
                              "Content":  "Chocolatey",
-                             "Category":  "__Package Manager",
+                             "Category":  "__Gestor de Paquetes",
                              "Type":  "RadioButton",
                              "GroupName":  "PackageManagerGroup",
                              "Checked":  false,
                              "Order":  "2",
-                             "Description":  "Use Chocolatey for package management"
+                             "Description":  "Usar Chocolatey como gestor de paquetes"
                          },
     "WPFCollapseAllCategories":  {
-                                     "Content":  "Collapse All Categories",
-                                     "Category":  "__Selection",
+                                     "Content":  "Colapsar Categorias",
+                                     "Category":  "__Seleccion",
                                      "Type":  "Button",
                                      "Order":  "1",
-                                     "Description":  "Collapse all application categories"
+                                     "Description":  "Colapsa todas las categorias de aplicaciones"
                                  },
     "WPFExpandAllCategories":  {
-                                   "Content":  "Expand All Categories",
-                                   "Category":  "__Selection",
+                                   "Content":  "Expandir Categorias",
+                                   "Category":  "__Seleccion",
                                    "Type":  "Button",
                                    "Order":  "2",
-                                   "Description":  "Expand all application categories"
+                                   "Description":  "Expande todas las categorias de aplicaciones"
                                },
     "WPFClearInstallSelection":  {
-                                     "Content":  "Clear Selection",
-                                     "Category":  "__Selection",
+                                     "Content":  "Limpiar Seleccion",
+                                     "Category":  "__Seleccion",
                                      "Type":  "Button",
                                      "Order":  "3",
-                                     "Description":  "Clear the selection of applications"
+                                     "Description":  "Limpia la seleccion actual de aplicaciones"
                                  },
     "WPFGetInstalled":  {
-                            "Content":  "Show Installed Apps",
-                            "Category":  "__Selection",
+                            "Content":  "Mostrar Apps Instaladas",
+                            "Category":  "__Seleccion",
                             "Type":  "Button",
                             "Order":  "4",
-                            "Description":  "Show installed applications"
+                            "Description":  "Muestra las aplicaciones que ya se encuentran instaladas en el sistema"
                         },
     "WPFselectedAppsButton":  {
-                                  "Content":  "Selected Apps: 0",
-                                  "Category":  "__Selection",
+                                  "Content":  "Apps Seleccionadas: 0",
+                                  "Category":  "__Seleccion",
                                   "Type":  "Button",
                                   "Order":  "5",
-                                  "Description":  "Show the selected applications"
+                                  "Description":  "Muestra la cantidad de aplicaciones seleccionadas"
                               },
     "WPFInstallFOSSInfo":  {
-                               "Content":  "Free and Open Source Software",
-                               "Category":  "__Selection",
+                               "Content":  "Software Libre y de Codigo Abierto (FOSS)",
+                               "Category":  "__Seleccion",
                                "Type":  "Note",
                                "Order":  "0",
-                               "Description":  "Information about the #FOSS label on application entries"
+                               "Description":  "Informacion sobre la etiqueta #FOSS en las aplicaciones disponibles"
                            }
 }
 '@ | ConvertFrom-Json
@@ -15209,8 +15209,8 @@ $sync.configs.preset = @'
 $sync.configs.standardtweaks = @'
 {
     "WPFTweaksDVR":  {
-                         "Content":  "Disable GameDVR and Xbox Game Bar",
-                         "Description":  "Disables Xbox Game Bar, background recording, and Game DVR overlays to reduce input lag and resource usage.",
+                         "Content":  "Desactivar GameDVR y Xbox Game Bar",
+                         "Description":  "Desactiva la barra Xbox Game Bar, grabaciones en segundo plano y superposiciones de juegos para eliminar input lag y consumo innecesario de recursos.",
                          "category":  "Standard Tweaks",
                          "panel":  "1",
                          "Order":  "a005_",
@@ -15246,8 +15246,8 @@ $sync.configs.standardtweaks = @'
                                       ]
                      },
     "WPFTweaksGameModeAndHAGS":  {
-                                     "Content":  "Enable Game Mode and Hardware Accelerated GPU Scheduling",
-                                     "Description":  "Enables Windows Game Mode and HAGS (Hardware-Accelerated GPU Scheduling) to improve frame times and reduce latency.",
+                                     "Content":  "Activar Modo Juego y Programacion de GPU (HAGS)",
+                                     "Description":  "Activa la aceleracion por hardware para GPU (HAGS) y el modo de juego de Windows para reducir la latencia y mejorar los FPS en aplicaciones pesadas y juegos.",
                                      "category":  "Standard Tweaks",
                                      "panel":  "1",
                                      "Order":  "a006_",
@@ -15276,8 +15276,8 @@ $sync.configs.standardtweaks = @'
                                                   ]
                                  },
     "WPFTweaksDisableNotificationsAndTips":  {
-                                                 "Content":  "Disable Windows Tips, Tricks, and Notification Popups",
-                                                 "Description":  "Disables Windows suggestions, lock screen tips, welcome experiences, and promotional notifications.",
+                                                 "Content":  "Desactivar Sugerencias, Trucos y Notificaciones Promocionales",
+                                                 "Description":  "Desactiva avisos emergentes, sugerencias de Windows, anuncios en pantalla de bloqueo y mensajes de bienvenida del sistema.",
                                                  "category":  "Standard Tweaks",
                                                  "panel":  "1",
                                                  "Order":  "a007_",
@@ -15320,8 +15320,8 @@ $sync.configs.standardtweaks = @'
                                                               ]
                                              },
     "WPFTweaksDisableTransparency":  {
-                                         "Content":  "Disable Windows Transparency Effects",
-                                         "Description":  "Disables acrylic and transparency effects in the Windows shell to reduce DWM GPU usage.",
+                                         "Content":  "Desactivar Efectos de Transparencia y Acrilico",
+                                         "Description":  "Desactiva las transparencias del menu inicio, barra de tareas y ventanas, reduciendo significativamente el consumo de GPU y memoria por DWM.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a008_",
@@ -15336,8 +15336,8 @@ $sync.configs.standardtweaks = @'
                                                       ]
                                      },
     "WPFTweaksBackgroundApps":  {
-                                    "Content":  "Disable Background Apps",
-                                    "Description":  "Prevents Universal Windows Platform (UWP) apps from running, receiving info, or sending notifications in the background.",
+                                    "Content":  "Desactivar Aplicaciones en Segundo Plano",
+                                    "Description":  "Impide que las aplicaciones de la Microsoft Store (UWP) se ejecuten en segundo plano consumiendo procesador y memoria RAM silenciosamente.",
                                     "category":  "Standard Tweaks",
                                     "panel":  "1",
                                     "Order":  "a009_",
@@ -15366,8 +15366,8 @@ $sync.configs.standardtweaks = @'
                                                  ]
                                 },
     "WPFTweaksPrivacySuite":  {
-                                  "Content":  "Disable Telemetry, Activity History, App Launch Tracking \u0026 Advertising ID",
-                                  "Description":  "Applies privacy settings from Windows Settings -\u003e Privacy: disables Advertising ID, App Launch Tracking, Ink \u0026 Typing personalization, Diagnostic Data, and Activity History.",
+                                  "Content":  "Desactivar Rastreo de Privacidad, ID de Publicidad y Telemetria",
+                                  "Description":  "Desactiva el ID publicitario de Windows, el seguimiento de apertura de aplicaciones, telemetria y recoleccion de escritura/teclado.",
                                   "category":  "Standard Tweaks",
                                   "panel":  "1",
                                   "Order":  "a010_",
@@ -15445,8 +15445,8 @@ $sync.configs.standardtweaks = @'
                                                ]
                               },
     "WPFTweaksDeliveryOptimization":  {
-                                          "Content":  "Disable Windows Update P2P Delivery Optimization",
-                                          "Description":  "Prevents Windows from using your bandwidth to upload updates to other PCs over the Internet.",
+                                          "Content":  "Desactivar Optimizacion de Distribucion P2P (Windows Update)",
+                                          "Description":  "Evita que tu ordenador comparta actualizaciones de Windows con otros equipos a traves de Internet, previniendo lag y picos de ping en la red.",
                                           "category":  "Standard Tweaks",
                                           "panel":  "1",
                                           "Order":  "a011_",
@@ -15468,8 +15468,8 @@ $sync.configs.standardtweaks = @'
                                                        ]
                                       },
     "WPFTweaksVisualFXPerformance":  {
-                                         "Content":  "Set Visual Effects for Best Performance (Keep Font Smoothing \u0026 Thumbnails)",
-                                         "Description":  "Configures Windows Visual Effects for maximum performance while preserving smooth fonts and image thumbnails.",
+                                         "Content":  "Efectos Visuales de Maximo Rendimiento (Preservando Fuentes Suaves)",
+                                         "Description":  "Ajusta Windows para obtener el mejor rendimiento visual manteniendo el suavizado de fuentes en pantalla (ClearType) y las miniaturas de imagenes.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a012_",
@@ -15526,8 +15526,8 @@ $sync.configs.standardtweaks = @'
                                                       ]
                                      },
     "WPFTweaksMouseAcceleration":  {
-                                       "Content":  "Disable Mouse Acceleration (Raw Input 1:1)",
-                                       "Description":  "Unchecks \u0027Enhance pointer precision\u0027 and sets pointer speed to 6/11 for 1:1 raw mouse movement.",
+                                       "Content":  "Desactivar Aceleracion de Raton (Raw Input 1:1)",
+                                       "Description":  "Desmarca \u0027Mejorar la precision del puntero\u0027 y fija la velocidad en 6/11 para obtener una respuesta 1:1 precisa sin saltos ni aceleracion artificial.",
                                        "category":  "Standard Tweaks",
                                        "panel":  "1",
                                        "Order":  "a013_",
@@ -15563,8 +15563,8 @@ $sync.configs.standardtweaks = @'
                                                     ]
                                    },
     "WPFTweaksUltimatePerformance":  {
-                                         "Content":  "Enable and Activate Ultimate Performance Power Plan",
-                                         "Description":  "Unlocks and activates the hidden Windows Ultimate Performance power scheme.",
+                                         "Content":  "Desbloquear y Activar Plan de Maximo Rendimiento",
+                                         "Description":  "Desbloquea el esquema de energia oculto \u0027Maximo Rendimiento\u0027 (Ultimate Performance), eliminando micropausas y ahorros de energia agresivos del procesador.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a014_",
@@ -15587,8 +15587,8 @@ $sync.configs.standardtweaks = @'
                                                         ]
                                      },
     "WPFTweaksFastBootTime":  {
-                                  "Content":  "Optimize Boot Timeout and Shutdown Speed",
-                                  "Description":  "Sets boot menu timeout to 3 seconds (msconfig standard) and reduces service/app kill timeout during shutdown/reboot.",
+                                  "Content":  "Arranque Rapido y Cierre Acelerado al Apagar",
+                                  "Description":  "Reduce el tiempo de espera de arranque a 3 segundos (msconfig) y acelera el cierre de tareas colgadas al reiniciar o apagar el equipo.",
                                   "category":  "Standard Tweaks",
                                   "panel":  "1",
                                   "Order":  "a015_",
@@ -15630,8 +15630,8 @@ $sync.configs.standardtweaks = @'
                                                  ]
                               },
     "WPFTweaksStorageAndTempCleanup":  {
-                                           "Content":  "Enable Storage Sense and Clean Temporary Files",
-                                           "Description":  "Enables Windows Storage Sense automatic cleanup and removes residual files in Temp and %Temp%.",
+                                           "Content":  "Activar Sensor de Almacenamiento y Limpieza de Temporales",
+                                           "Description":  "Habilita la limpieza automatica periodica de la papelera y purga de archivos temporales del sistema.",
                                            "category":  "Standard Tweaks",
                                            "panel":  "1",
                                            "Order":  "a016_",
@@ -15657,8 +15657,8 @@ $sync.configs.standardtweaks = @'
                                                             ]
                                        },
     "WPFTweaksServices":  {
-                              "Content":  "Set Background Services to Manual (Safe Standard Profile)",
-                              "Description":  "Sets non-essential telemetry, diagnostic, and rare background services to Manual or Disabled so they only run when explicitly needed.",
+                              "Content":  "Optimizacion Segura de Servicios de Windows",
+                              "Description":  "Configura en manual o deshabilitado servicios no esenciales de diagnostico, telemetria y mapas (DiagTrack, MapsBroker, Fax, etc.).",
                               "category":  "Standard Tweaks",
                               "panel":  "1",
                               "Order":  "a017_",
@@ -15860,8 +15860,8 @@ $sync.configs.themes = @'
 $sync.configs.tweaks = @'
 {
     "WPFTweaksActivity":  {
-                              "Content":  "Activity History - Disable",
-                              "Description":  "Stops Windows from publishing or uploading user activities while preserving clipboard history.",
+                              "Content":  "Desactivar Historial de Actividades (Timeline)",
+                              "Description":  "Desactiva la sincronizacion y almacenamiento del historial de actividades de Windows en la nube.",
                               "category":  "Essential Tweaks",
                               "panel":  "1",
                               "registry":  [
@@ -15919,8 +15919,8 @@ $sync.configs.tweaks = @'
                            "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/hiber"
                        },
     "WPFTweaksWidget":  {
-                            "Content":  "Widgets - Remove",
-                            "Description":  "Removes the annoying widgets in the bottom left of the Taskbar.",
+                            "Content":  "Desactivar Widgets y Noticias",
+                            "Description":  "Desactiva el panel de noticias y widgets de la barra de tareas, liberando cientos de MB de memoria RAM consumidos por procesos WebView2.",
                             "category":  "Essential Tweaks",
                             "panel":  "1",
                             "InvokeScript":  [
@@ -15945,8 +15945,8 @@ $sync.configs.tweaks = @'
                                      "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/revertstartmenu"
                                  },
     "WPFTweaksDisableStoreSearch":  {
-                                        "Content":  "Microsoft Store Recommended Search Results - Disable",
-                                        "Description":  "Will not display recommended Microsoft Store apps when searching for apps in the Start menu.",
+                                        "Content":  "Desactivar Busqueda Web de Bing en Menu Inicio",
+                                        "Description":  "Hace que la busqueda del menu inicio busque unicamente en tus archivos y programas locales, eliminando resultados de Bing y acelerando la respuesta.",
                                         "category":  "Essential Tweaks",
                                         "panel":  "1",
                                         "InvokeScript":  [
@@ -15958,8 +15958,8 @@ $sync.configs.tweaks = @'
                                         "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/disablestoresearch"
                                     },
     "WPFTweaksLocation":  {
-                              "Content":  "Location Tracking - Disable",
-                              "Description":  "Disables Location Tracking.",
+                              "Content":  "Desactivar Sensores y Geolocalizacion",
+                              "Description":  "Desactiva el servicio de ubicacion del sistema para mayor privacidad y menor consumo en segundo plano.",
                               "category":  "Essential Tweaks",
                               "panel":  "1",
                               "service":  [
@@ -15995,8 +15995,8 @@ $sync.configs.tweaks = @'
                               "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/location"
                           },
     "WPFTweaksServices":  {
-                              "Content":  "Set Background Services to Manual (Safe Standard Profile)",
-                              "Description":  "Sets non-essential telemetry, diagnostic, and rare background services to Manual or Disabled so they only run when explicitly needed.",
+                              "Content":  "Optimizacion Segura de Servicios de Windows",
+                              "Description":  "Configura en manual o deshabilitado servicios no esenciales de diagnostico, telemetria y mapas (DiagTrack, MapsBroker, Fax, etc.).",
                               "category":  "Standard Tweaks",
                               "panel":  "1",
                               "Order":  "a017_",
@@ -16311,8 +16311,8 @@ $sync.configs.tweaks = @'
                                  "link":  "https://winutil.christitus.com/code-reference/tweaks/z--advanced-tweaks---caution/edgedebloat"
                              },
     "WPFTweaksConsumerFeatures":  {
-                                      "Content":  "ConsumerFeatures - Disable",
-                                      "Description":  "Stops promoted app installs and reduces app suggestions from Microsoft Store content.",
+                                      "Content":  "Desactivar Instalacion Automatica de Apps y Juegos Promocionados",
+                                      "Description":  "Impide que Windows descargue automaticamente juegos patrocinados (Candy Crush, etc.) o sugerencias en cuentas nuevas.",
                                       "category":  "Essential Tweaks",
                                       "panel":  "1",
                                       "registry":  [
@@ -16487,8 +16487,8 @@ $sync.configs.tweaks = @'
                          "link":  "https://winutil.christitus.com/code-reference/tweaks/z--advanced-tweaks---caution/utc"
                      },
     "WPFTweaksRemoveOneDrive":  {
-                                    "Content":  "Microsoft OneDrive - Remove",
-                                    "Description":  "Denies permission to remove OneDrive user files, then uses its own uninstaller to remove it and restores the original permission afterward.",
+                                    "Content":  "Desinstalar Microsoft OneDrive",
+                                    "Description":  "Desinstala la aplicacion cliente de OneDrive y evita que se inicie automaticamente con Windows.",
                                     "category":  "z__Advanced Tweaks - CAUTION",
                                     "panel":  "1",
                                     "InvokeScript":  [
@@ -16648,8 +16648,8 @@ $sync.configs.tweaks = @'
                                   "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/restorepoint"
                               },
     "WPFTweaksEndTaskOnTaskbar":  {
-                                      "Content":  "End Task With Right Click - Enable",
-                                      "Description":  "Enables option to end task when right-clicking a program in the taskbar.",
+                                      "Content":  "Habilitar \u0027Finalizar Tarea\u0027 con Clic Derecho en Barra de Tareas",
+                                      "Description":  "Agrega la opcion de cerrar programas directamente desde la barra de tareas sin abrir el Administrador de Tareas.",
                                       "category":  "Essential Tweaks",
                                       "panel":  "1",
                                       "registry":  [
@@ -16680,8 +16680,8 @@ $sync.configs.tweaks = @'
                              "link":  "https://winutil.christitus.com/code-reference/tweaks/z--advanced-tweaks---caution/storage"
                          },
     "WPFTweaksWindowsAI":  {
-                               "Content":  "Windows AI - Disable And Remove",
-                               "Description":  "Removes and disables all AI features/packages",
+                               "Content":  "Desactivar Copilot y Funciones de IA de Windows",
+                               "Description":  "Desactiva la integracion de Windows Copilot y Recall en el sistema operativo.",
                                "category":  "z__Advanced Tweaks - CAUTION",
                                "panel":  "1",
                                "registry":  [
@@ -16780,8 +16780,8 @@ $sync.configs.tweaks = @'
                                "link":  "https://winutil.christitus.com/code-reference/tweaks/z--advanced-tweaks---caution/logiblock"
                            },
     "WPFTweaksDisableNotifications":  {
-                                          "Content":  "System Tray Notifications \u0026 Calendar - Disable",
-                                          "Description":  "Disables all Notifications INCLUDING Calendar.",
+                                          "Content":  "Desactivar Notificaciones Emergentes y Centro de Notificaciones",
+                                          "Description":  "Desactiva todos los globos emergentes (toasts) y el panel del centro de notificaciones de Windows.",
                                           "category":  "z__Advanced Tweaks - CAUTION",
                                           "panel":  "1",
                                           "registry":  [
@@ -16829,8 +16829,8 @@ $sync.configs.tweaks = @'
                                     "link":  "https://winutil.christitus.com/code-reference/tweaks/z--advanced-tweaks---caution/rightclickmenu"
                                 },
     "WPFTweaksDiskCleanup":  {
-                                 "Content":  "Disk Cleanup - Run",
-                                 "Description":  "Runs Disk Cleanup on Drive C: and removes old Windows Updates.",
+                                 "Content":  "Limpieza Profunda de Disco",
+                                 "Description":  "Ejecuta el liberador de espacio en disco del sistema con todas las opciones seguras marcadas.",
                                  "category":  "Essential Tweaks",
                                  "panel":  "1",
                                  "InvokeScript":  [
@@ -16839,8 +16839,8 @@ $sync.configs.tweaks = @'
                                  "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/diskcleanup"
                              },
     "WPFTweaksDeleteTempFiles":  {
-                                     "Content":  "Temporary Files - Remove",
-                                     "Description":  "Erases TEMP Folders.",
+                                     "Content":  "Eliminar Archivos Temporales Residuales",
+                                     "Description":  "Borra los archivos temporales acumulados en %TEMP% y la carpeta temporal de Windows.",
                                      "category":  "Essential Tweaks",
                                      "panel":  "1",
                                      "InvokeScript":  [
@@ -17557,8 +17557,8 @@ $sync.configs.tweaks = @'
                              "link":  "https://winutil.christitus.com/code-reference/tweaks/performance-plans---not-for-laptops/removeultperf"
                          },
     "WPFTweaksDVR":  {
-                         "Content":  "Disable GameDVR and Xbox Game Bar",
-                         "Description":  "Disables Xbox Game Bar, background recording, and Game DVR overlays to reduce input lag and resource usage.",
+                         "Content":  "Desactivar GameDVR y Xbox Game Bar",
+                         "Description":  "Desactiva la barra Xbox Game Bar, grabaciones en segundo plano y superposiciones de juegos para eliminar input lag y consumo innecesario de recursos.",
                          "category":  "Standard Tweaks",
                          "panel":  "1",
                          "Order":  "a005_",
@@ -17594,8 +17594,8 @@ $sync.configs.tweaks = @'
                                       ]
                      },
     "WPFTweaksGameModeAndHAGS":  {
-                                     "Content":  "Enable Game Mode and Hardware Accelerated GPU Scheduling",
-                                     "Description":  "Enables Windows Game Mode and HAGS (Hardware-Accelerated GPU Scheduling) to improve frame times and reduce latency.",
+                                     "Content":  "Activar Modo Juego y Programacion de GPU (HAGS)",
+                                     "Description":  "Activa la aceleracion por hardware para GPU (HAGS) y el modo de juego de Windows para reducir la latencia y mejorar los FPS en aplicaciones pesadas y juegos.",
                                      "category":  "Standard Tweaks",
                                      "panel":  "1",
                                      "Order":  "a006_",
@@ -17624,8 +17624,8 @@ $sync.configs.tweaks = @'
                                                   ]
                                  },
     "WPFTweaksDisableNotificationsAndTips":  {
-                                                 "Content":  "Disable Windows Tips, Tricks, and Notification Popups",
-                                                 "Description":  "Disables Windows suggestions, lock screen tips, welcome experiences, and promotional notifications.",
+                                                 "Content":  "Desactivar Sugerencias, Trucos y Notificaciones Promocionales",
+                                                 "Description":  "Desactiva avisos emergentes, sugerencias de Windows, anuncios en pantalla de bloqueo y mensajes de bienvenida del sistema.",
                                                  "category":  "Standard Tweaks",
                                                  "panel":  "1",
                                                  "Order":  "a007_",
@@ -17668,8 +17668,8 @@ $sync.configs.tweaks = @'
                                                               ]
                                              },
     "WPFTweaksDisableTransparency":  {
-                                         "Content":  "Disable Windows Transparency Effects",
-                                         "Description":  "Disables acrylic and transparency effects in the Windows shell to reduce DWM GPU usage.",
+                                         "Content":  "Desactivar Efectos de Transparencia y Acrilico",
+                                         "Description":  "Desactiva las transparencias del menu inicio, barra de tareas y ventanas, reduciendo significativamente el consumo de GPU y memoria por DWM.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a008_",
@@ -17684,8 +17684,8 @@ $sync.configs.tweaks = @'
                                                       ]
                                      },
     "WPFTweaksBackgroundApps":  {
-                                    "Content":  "Disable Background Apps",
-                                    "Description":  "Prevents Universal Windows Platform (UWP) apps from running, receiving info, or sending notifications in the background.",
+                                    "Content":  "Desactivar Aplicaciones en Segundo Plano",
+                                    "Description":  "Impide que las aplicaciones de la Microsoft Store (UWP) se ejecuten en segundo plano consumiendo procesador y memoria RAM silenciosamente.",
                                     "category":  "Standard Tweaks",
                                     "panel":  "1",
                                     "Order":  "a009_",
@@ -17714,8 +17714,8 @@ $sync.configs.tweaks = @'
                                                  ]
                                 },
     "WPFTweaksPrivacySuite":  {
-                                  "Content":  "Disable Telemetry, Activity History, App Launch Tracking \u0026 Advertising ID",
-                                  "Description":  "Applies privacy settings from Windows Settings -\u003e Privacy: disables Advertising ID, App Launch Tracking, Ink \u0026 Typing personalization, Diagnostic Data, and Activity History.",
+                                  "Content":  "Desactivar Rastreo de Privacidad, ID de Publicidad y Telemetria",
+                                  "Description":  "Desactiva el ID publicitario de Windows, el seguimiento de apertura de aplicaciones, telemetria y recoleccion de escritura/teclado.",
                                   "category":  "Standard Tweaks",
                                   "panel":  "1",
                                   "Order":  "a010_",
@@ -17793,8 +17793,8 @@ $sync.configs.tweaks = @'
                                                ]
                               },
     "WPFTweaksDeliveryOptimization":  {
-                                          "Content":  "Disable Windows Update P2P Delivery Optimization",
-                                          "Description":  "Prevents Windows from using your bandwidth to upload updates to other PCs over the Internet.",
+                                          "Content":  "Desactivar Optimizacion de Distribucion P2P (Windows Update)",
+                                          "Description":  "Evita que tu ordenador comparta actualizaciones de Windows con otros equipos a traves de Internet, previniendo lag y picos de ping en la red.",
                                           "category":  "Standard Tweaks",
                                           "panel":  "1",
                                           "Order":  "a011_",
@@ -17816,8 +17816,8 @@ $sync.configs.tweaks = @'
                                                        ]
                                       },
     "WPFTweaksVisualFXPerformance":  {
-                                         "Content":  "Set Visual Effects for Best Performance (Keep Font Smoothing \u0026 Thumbnails)",
-                                         "Description":  "Configures Windows Visual Effects for maximum performance while preserving smooth fonts and image thumbnails.",
+                                         "Content":  "Efectos Visuales de Maximo Rendimiento (Preservando Fuentes Suaves)",
+                                         "Description":  "Ajusta Windows para obtener el mejor rendimiento visual manteniendo el suavizado de fuentes en pantalla (ClearType) y las miniaturas de imagenes.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a012_",
@@ -17874,8 +17874,8 @@ $sync.configs.tweaks = @'
                                                       ]
                                      },
     "WPFTweaksMouseAcceleration":  {
-                                       "Content":  "Disable Mouse Acceleration (Raw Input 1:1)",
-                                       "Description":  "Unchecks \u0027Enhance pointer precision\u0027 and sets pointer speed to 6/11 for 1:1 raw mouse movement.",
+                                       "Content":  "Desactivar Aceleracion de Raton (Raw Input 1:1)",
+                                       "Description":  "Desmarca \u0027Mejorar la precision del puntero\u0027 y fija la velocidad en 6/11 para obtener una respuesta 1:1 precisa sin saltos ni aceleracion artificial.",
                                        "category":  "Standard Tweaks",
                                        "panel":  "1",
                                        "Order":  "a013_",
@@ -17911,8 +17911,8 @@ $sync.configs.tweaks = @'
                                                     ]
                                    },
     "WPFTweaksUltimatePerformance":  {
-                                         "Content":  "Enable and Activate Ultimate Performance Power Plan",
-                                         "Description":  "Unlocks and activates the hidden Windows Ultimate Performance power scheme.",
+                                         "Content":  "Desbloquear y Activar Plan de Maximo Rendimiento",
+                                         "Description":  "Desbloquea el esquema de energia oculto \u0027Maximo Rendimiento\u0027 (Ultimate Performance), eliminando micropausas y ahorros de energia agresivos del procesador.",
                                          "category":  "Standard Tweaks",
                                          "panel":  "1",
                                          "Order":  "a014_",
@@ -17935,8 +17935,8 @@ $sync.configs.tweaks = @'
                                                         ]
                                      },
     "WPFTweaksFastBootTime":  {
-                                  "Content":  "Optimize Boot Timeout and Shutdown Speed",
-                                  "Description":  "Sets boot menu timeout to 3 seconds (msconfig standard) and reduces service/app kill timeout during shutdown/reboot.",
+                                  "Content":  "Arranque Rapido y Cierre Acelerado al Apagar",
+                                  "Description":  "Reduce el tiempo de espera de arranque a 3 segundos (msconfig) y acelera el cierre de tareas colgadas al reiniciar o apagar el equipo.",
                                   "category":  "Standard Tweaks",
                                   "panel":  "1",
                                   "Order":  "a015_",
@@ -17978,8 +17978,8 @@ $sync.configs.tweaks = @'
                                                  ]
                               },
     "WPFTweaksStorageAndTempCleanup":  {
-                                           "Content":  "Enable Storage Sense and Clean Temporary Files",
-                                           "Description":  "Enables Windows Storage Sense automatic cleanup and removes residual files in Temp and %Temp%.",
+                                           "Content":  "Activar Sensor de Almacenamiento y Limpieza de Temporales",
+                                           "Description":  "Habilita la limpieza automatica periodica de la papelera y purga de archivos temporales del sistema.",
                                            "category":  "Standard Tweaks",
                                            "panel":  "1",
                                            "Order":  "a016_",
@@ -18005,8 +18005,8 @@ $sync.configs.tweaks = @'
                                                             ]
                                        },
     "WPFTweaksTele":  {
-                          "Content":  "Telemetry - Disable",
-                          "Description":  "Disables Microsoft Telemetry.",
+                          "Content":  "Desactivar Telemetria Avanzada y Diagnostico",
+                          "Description":  "Desactiva tareas programadas y servicios de telemetria y recoleccion de datos de Windows.",
                           "category":  "Essential Tweaks",
                           "panel":  "1",
                           "service":  [
@@ -18123,8 +18123,8 @@ $sync.configs.tweaks = @'
                           "link":  "https://winutil.christitus.com/code-reference/tweaks/essential-tweaks/telemetry"
                       },
     "WPFTweaksDisableAllAnimations":  {
-                                          "Content":  "Disable All Windows Animations \u0026 Menu Delays",
-                                          "Description":  "Completely disables window minimize/maximize animations, taskbar animations, and removes the menu popup delay (MenuShowDelay = 0) for instantaneous responsiveness on low-spec PCs.",
+                                          "Content":  "Desactivar Todas las Animaciones y Retardos de Menus",
+                                          "Description":  "Desactiva por completo las animaciones de minimizar/maximizar ventanas, animaciones de barra de tareas y elimina el retardo de menus (MenuShowDelay = 0).",
                                           "category":  "Standard Tweaks",
                                           "panel":  "1",
                                           "Order":  "a013_",
@@ -19239,7 +19239,7 @@ $inputXML = @'
                     Background="{DynamicResource ButtonInstallBackgroundColor}" Foreground="white" FontWeight="Bold" Name="WPFTab1BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonInstallForegroundColor}" >
-                            <Underline>I</Underline>nstall
+                            <Underline>I</Underline>nstalar
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -19247,7 +19247,7 @@ $inputXML = @'
                     Background="{DynamicResource ButtonTweaksBackgroundColor}" Foreground="{DynamicResource ButtonTweaksForegroundColor}" FontWeight="Bold" Name="WPFTab2BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonTweaksForegroundColor}">
-                            <Underline>T</Underline>weaks
+                            <Underline>A</Underline>justes
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -19255,7 +19255,7 @@ $inputXML = @'
                     Background="{DynamicResource ButtonConfigBackgroundColor}" Foreground="{DynamicResource ButtonConfigForegroundColor}" FontWeight="Bold" Name="WPFTab3BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonConfigForegroundColor}">
-                            <Underline>C</Underline>onfig
+                            <Underline>C</Underline>onfiguraci�n
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -19263,7 +19263,7 @@ $inputXML = @'
                     Background="{DynamicResource ButtonUpdatesBackgroundColor}" Foreground="{DynamicResource ButtonUpdatesForegroundColor}" FontWeight="Bold" Name="WPFTab4BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonUpdatesForegroundColor}">
-                            <Underline>U</Underline>pdates
+                            <Underline>A</Underline>ctualizaciones
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -19271,7 +19271,15 @@ $inputXML = @'
                     Background="{DynamicResource ButtonWin11ISOBackgroundColor}" Foreground="{DynamicResource ButtonWin11ISOForegroundColor}" FontWeight="Bold" Name="WPFTab5BT">
                     <ToggleButton.Content>
                         <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonWin11ISOForegroundColor}">
-                            <Underline>W</Underline>in11 Creator
+                            <Underline>C</Underline>reador Win11
+                        </TextBlock>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <ToggleButton Style="{StaticResource TabToggleButton}" Margin="0,0,5,0" Height="{DynamicResource TabButtonHeight}" Width="Auto" MinWidth="{DynamicResource TabButtonWidth}"
+                    Background="{DynamicResource ButtonTweaksBackgroundColor}" Foreground="{DynamicResource ButtonTweaksForegroundColor}" FontWeight="Bold" Name="WPFTab7BT">
+                    <ToggleButton.Content>
+                        <TextBlock FontSize="{DynamicResource TabButtonFontSize}" Background="Transparent" Foreground="{DynamicResource ButtonTweaksForegroundColor}">
+                            <Underline>A</Underline>justes Estándar
                         </TextBlock>
                     </ToggleButton.Content>
                 </ToggleButton>
@@ -19595,16 +19603,16 @@ $inputXML = @'
                             </Grid.RowDefinitions>
 
                             <StackPanel Background="Transparent" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
-                                <Label Content="Recommended Selections:" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
+                                <Label Content="Selecciones Recomendadas:" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
                                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2,0,0">
-                                    <Button Name="WPFstandard" Content=" Standard " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFOffice" Content=" Office / Low-Spec " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFminimal" Content=" Minimal " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFAdvanced" Content=" Advanced " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFClearTweaksSelection" Content=" Clear " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFGetInstalledTweaks" Content=" Select Installed Tweaks " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFAppxRemoval" Content=" AppX Removal " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFGoToStandardTweaks" Content=" Standard Tweaks " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFstandard" Content=" Est�ndar " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFOffice" Content=" Oficina / PC Antigua " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFminimal" Content=" M�nimo " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFAdvanced" Content=" Avanzado " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFClearTweaksSelection" Content=" Limpiar " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFGetInstalledTweaks" Content=" Seleccionar Instalados " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFAppxRemoval" Content=" Desinstalador AppX " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFGoToStandardTweaks" Content=" Ajustes Est�ndar " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                 </WrapPanel>
                             </StackPanel>
 
@@ -19624,8 +19632,8 @@ $inputXML = @'
                     </ScrollViewer>
                     <Border Grid.Row="1" Background="{DynamicResource SurfaceBackgroundColor}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" Padding="10">
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0">
-                            <Button Name="WPFTweaksbutton" Content="Run Tweaks" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                            <Button Name="WPFUndoall" Content="Undo Selected Tweaks" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFTweaksbutton" Content="Aplicar Ajustes" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFUndoall" Content="Restaurar Seleccionados" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                         </WrapPanel>
                     </Border>
                 </Grid>
@@ -19692,7 +19700,7 @@ $inputXML = @'
                                     </StackPanel>
                                     <Button Name="WPFUpdatessecurity"
                                             Grid.Row="2"
-                                            Content="Apply Recommended"
+                                            Content="Aplicar Recomendado"
                                             FontSize="{DynamicResource ConfigTabButtonFontSize}"
                                             Margin="0,16,0,0"
                                             Padding="10"/>
@@ -19728,7 +19736,7 @@ $inputXML = @'
                                     </StackPanel>
                                     <Button Name="WPFUpdatesdefault"
                                             Grid.Row="2"
-                                            Content="Restore Defaults"
+                                            Content="Restaurar Valores por Defecto"
                                             FontSize="{DynamicResource ConfigTabButtonFontSize}"
                                             Margin="0,16,0,0"
                                             Padding="10"/>
@@ -19765,7 +19773,7 @@ $inputXML = @'
                                     </StackPanel>
                                     <Button Name="WPFUpdatesdisable"
                                             Grid.Row="2"
-                                            Content="Disable Updates"
+                                            Content="Desactivar Actualizaciones"
                                             FontSize="{DynamicResource ConfigTabButtonFontSize}"
                                             Foreground="Red"
                                             Margin="0,16,0,0"
@@ -20400,10 +20408,10 @@ $inputXML = @'
                             <StackPanel Background="Transparent" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <Label Content="Selections:" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2,0,0">
-                                    <Button Name="WPFDefaultAppxSelection" Content=" Default " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFGetInstalledAppx" Content=" Select Installed " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFSelectAllAppx" Content=" Select All " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                                    <Button Name="WPFClearAppxSelection" Content=" Clear Selection " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFDefaultAppxSelection" Content=" Por Defecto " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFGetInstalledAppx" Content=" Seleccionar Instaladas " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFSelectAllAppx" Content=" Seleccionar Todo " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFClearAppxSelection" Content=" Limpiar Selecci�n " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -20424,9 +20432,56 @@ $inputXML = @'
 
                     <Border Grid.Row="1" Background="{DynamicResource SurfaceBackgroundColor}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" Padding="10">
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Button Name="WPFBackToTweaks" Content="Back to Tweaks" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                            <Button Name="WPFInstallSelectedAppx" Content="Install Selected" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
-                            <Button Name="WPFRemoveSelectedAppx" Content="Remove Selected" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFBackToTweaks" Content="Volver a Ajustes" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFInstallSelectedAppx" Content="Instalar Seleccionadas" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFRemoveSelectedAppx" Content="Eliminar Seleccionadas" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                        </WrapPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="StandardTweaks" Visibility="Collapsed" Name="WPFTab7">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="0" Margin="{DynamicResource TabContentMargin}">
+                        <Grid Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Background="Transparent" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="5">
+                                <Label Content="Ajustes del Perfil Estándar (Optimización de Rendimiento):" FontSize="{DynamicResource FontSize}" VerticalAlignment="Center" Margin="2" FontWeight="Bold"/>
+                                <TextBlock Text="Suite completa de optimizaciones recomendadas para eliminar input lag, reducir latencia y aumentar FPS." Foreground="{DynamicResource MainForegroundColor}" Margin="5,0,0,5" FontStyle="Italic"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,2,0,0">
+                                    <Button Name="WPFSelectAllStandardTweaks" Content=" Seleccionar Todo " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                    <Button Name="WPFClearStandardTweaks" Content=" Limpiar Selección " Margin="2" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Name="standardtweakspanel" Grid.Row="1">
+                            </Grid>
+
+                            <Border Grid.Row="2" Style="{StaticResource BorderStyle}" Margin="5,15,5,5">
+                                <WrapPanel Background="Transparent" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Padding="10" TextWrapping="Wrap" Foreground="{DynamicResource MainForegroundColor}">
+                                        Nota: Estos ajustes optimizan componentes clave del sistema operativo sin instalar software de terceros.
+                                        <LineBreak/>Todos los ajustes son 100% reversibles seleccionando la casilla y pulsando 'Restaurar Seleccionados'.
+                                    </TextBlock>
+                                </WrapPanel>
+                            </Border>
+                        </Grid>
+                    </ScrollViewer>
+
+                    <Border Grid.Row="1" Background="{DynamicResource SurfaceBackgroundColor}" BorderBrush="{DynamicResource BorderColor}" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Stretch" Padding="10">
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Button Name="WPFBackToTweaksFromStandard" Content="Volver a Ajustes" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFRunStandardTweaks" Content="Aplicar Ajustes Estándar" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
+                            <Button Name="WPFUndoStandardTweaks" Content="Restaurar Seleccionados" Margin="5" Width="{DynamicResource ButtonWidth}" Height="{DynamicResource ButtonHeight}"/>
                         </WrapPanel>
                     </Border>
                 </Grid>

@@ -1,0 +1,82 @@
+---
+title: "Microsoft OneDrive - Remove"
+description: "Denies permission to remove OneDrive user files, then uses its own uninstaller to remove it and restores the original permission afterward."
+editUrl: false
+---
+
+:::note
+This page is generated from [`config/tweaks.json`](https://github.com/ChrisTitusTech/winutil/blob/main/config/tweaks.json). Do not edit this page directly.
+:::
+
+```json title="config/tweaks.json"
+  "WPFTweaksRemoveOneDrive": {
+    "Content": "Microsoft OneDrive - Remove",
+    "Description": "Denies permission to remove OneDrive user files, then uses its own uninstaller to remove it and restores the original permission afterward.",
+    "category": "z__Advanced Tweaks - CAUTION",
+    "panel": "1",
+    "InvokeScript": [
+      "
+      $OneDrivePath = $Env:OneDrive
+      $OneDriveFolderExists = -not [string]::IsNullOrWhiteSpace($OneDrivePath) -and (Test-Path -LiteralPath $OneDrivePath -PathType Container -ErrorAction Stop)
+
+      if ($OneDriveFolderExists) {
+          $OneDriveAcl = Get-Acl -LiteralPath $OneDrivePath -ErrorAction Stop
+      } else {
+          Write-Host \"OneDrive folder is already absent; skipping folder permissions and cleanup.\"
+      }
+
+      try {
+          if ($OneDriveFolderExists) {
+              # Protect user files while the uninstaller runs.
+              icacls $OneDrivePath /deny \"*S-1-5-32-544:(D,DC)\"
+              if ($LASTEXITCODE -ne 0) { throw \"Unable to protect the OneDrive folder (icacls exit code $LASTEXITCODE).\" }
+          }
+
+          Write-Host \"Uninstalling OneDrive...\"
+          Start-Process -FilePath (Join-Path $Env:SystemRoot \"System32\\OneDriveSetup.exe\") -ArgumentList '/uninstall' -Wait -ErrorAction Stop
+
+          # Some of OneDrive files use explorer, and OneDrive uses FileCoAuth
+          Write-Host \"Removing leftover OneDrive Files...\"
+
+          Get-Process -ErrorAction Stop | Where-Object ProcessName -eq 'FileCoAuth' | Stop-Process -ErrorAction Stop
+          Get-Process -ErrorAction Stop | Where-Object ProcessName -eq 'Explorer' | Stop-Process -ErrorAction Stop
+
+          $OneDriveLeftovers = @(\"$Env:LocalAppData\\Microsoft\\OneDrive\", \"$Env:ProgramData\\Microsoft OneDrive\")
+          foreach ($LeftoverPath in $OneDriveLeftovers) {
+              if (Test-Path -LiteralPath $LeftoverPath -ErrorAction Stop) {
+                  Remove-Item -LiteralPath $LeftoverPath -Recurse -Force -ErrorAction Stop
+              }
+          }
+      } finally {
+          if ($OneDriveFolderExists) {
+              # Restore access even when uninstall or leftover cleanup fails.
+              Set-Acl -LiteralPath $OneDrivePath -AclObject $OneDriveAcl -ErrorAction Stop
+          }
+      }
+
+      if ($OneDriveFolderExists -and -not (Get-ChildItem -LiteralPath $OneDrivePath -Force -ErrorAction Stop)) {
+          # Refuse to delete if files appeared after the emptiness check.
+          [System.IO.Directory]::Delete($OneDrivePath, $false)
+          [Environment]::SetEnvironmentVariable('OneDrive', $null, 'User')
+      }
+
+      # OneSyncSvc is a per-user template; Get-Service only exposes user instances.
+      # Skip the operation if this Windows installation has no template.
+      if (Test-Path -LiteralPath 'HKLM:\\SYSTEM\\CurrentControlSet\\Services\\OneSyncSvc') {
+          Set-Service -Name OneSyncSvc -StartupType Disabled
+      }
+      "
+    ],
+    "UndoScript": [
+      "
+      Write-Host \"Installing OneDrive\"
+      winget install Microsoft.Onedrive --source winget
+
+      # Enable OneSyncSvc when the per-user service template exists
+      if (Test-Path -LiteralPath 'HKLM:\\SYSTEM\\CurrentControlSet\\Services\\OneSyncSvc') {
+          Set-Service -Name OneSyncSvc -StartupType Automatic
+      }
+      "
+    ],
+  }
+```

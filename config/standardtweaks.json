@@ -1,0 +1,509 @@
+﻿{
+    "WPFTweaksDVR":  {
+                         "Content":  "Disable GameDVR and Xbox Game Bar",
+                         "Description":  "Disables Xbox Game Bar, background recording, and Game DVR overlays to reduce input lag and resource usage.",
+                         "category":  "Standard Tweaks",
+                         "panel":  "1",
+                         "Order":  "a005_",
+                         "registry":  [
+                                          {
+                                              "Path":  "HKCU:\\System\\GameConfigStore",
+                                              "Name":  "GameDVR_FSEBehavior",
+                                              "Type":  "DWord",
+                                              "Value":  "2",
+                                              "OriginalValue":  "0"
+                                          },
+                                          {
+                                              "Path":  "HKCU:\\System\\GameConfigStore",
+                                              "Name":  "GameDVR_Enabled",
+                                              "Type":  "DWord",
+                                              "Value":  "0",
+                                              "OriginalValue":  "1"
+                                          },
+                                          {
+                                              "Path":  "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\GameDVR",
+                                              "Name":  "AppCaptureEnabled",
+                                              "Type":  "DWord",
+                                              "Value":  "0",
+                                              "OriginalValue":  "1"
+                                          },
+                                          {
+                                              "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR",
+                                              "Name":  "AllowGameDVR",
+                                              "Type":  "DWord",
+                                              "Value":  "0",
+                                              "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                          }
+                                      ]
+                     },
+    "WPFTweaksGameModeAndHAGS":  {
+                                     "Content":  "Enable Game Mode and Hardware Accelerated GPU Scheduling",
+                                     "Description":  "Enables Windows Game Mode and HAGS (Hardware-Accelerated GPU Scheduling) to improve frame times and reduce latency.",
+                                     "category":  "Standard Tweaks",
+                                     "panel":  "1",
+                                     "Order":  "a006_",
+                                     "registry":  [
+                                                      {
+                                                          "Path":  "HKCU:\\Software\\Microsoft\\GameBar",
+                                                          "Name":  "AllowAutoGameMode",
+                                                          "Type":  "DWord",
+                                                          "Value":  "1",
+                                                          "OriginalValue":  "1"
+                                                      },
+                                                      {
+                                                          "Path":  "HKCU:\\Software\\Microsoft\\GameBar",
+                                                          "Name":  "AutoGameModeEnabled",
+                                                          "Type":  "DWord",
+                                                          "Value":  "1",
+                                                          "OriginalValue":  "1"
+                                                      },
+                                                      {
+                                                          "Path":  "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+                                                          "Name":  "HwSchMode",
+                                                          "Type":  "DWord",
+                                                          "Value":  "2",
+                                                          "OriginalValue":  "1"
+                                                      }
+                                                  ]
+                                 },
+    "WPFTweaksDisableNotificationsAndTips":  {
+                                                 "Content":  "Disable Windows Tips, Tricks, and Notification Popups",
+                                                 "Description":  "Disables Windows suggestions, lock screen tips, welcome experiences, and promotional notifications.",
+                                                 "category":  "Standard Tweaks",
+                                                 "panel":  "1",
+                                                 "Order":  "a007_",
+                                                 "registry":  [
+                                                                  {
+                                                                      "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                                                                      "Name":  "SubscribedContent-338389Enabled",
+                                                                      "Type":  "DWord",
+                                                                      "Value":  "0",
+                                                                      "OriginalValue":  "1"
+                                                                  },
+                                                                  {
+                                                                      "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                                                                      "Name":  "SubscribedContent-310093Enabled",
+                                                                      "Type":  "DWord",
+                                                                      "Value":  "0",
+                                                                      "OriginalValue":  "1"
+                                                                  },
+                                                                  {
+                                                                      "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                                                                      "Name":  "SubscribedContent-338388Enabled",
+                                                                      "Type":  "DWord",
+                                                                      "Value":  "0",
+                                                                      "OriginalValue":  "1"
+                                                                  },
+                                                                  {
+                                                                      "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+                                                                      "Name":  "SoftLandingEnabled",
+                                                                      "Type":  "DWord",
+                                                                      "Value":  "0",
+                                                                      "OriginalValue":  "1"
+                                                                  },
+                                                                  {
+                                                                      "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                                      "Name":  "ShowSyncProviderNotifications",
+                                                                      "Type":  "DWord",
+                                                                      "Value":  "0",
+                                                                      "OriginalValue":  "1"
+                                                                  }
+                                                              ]
+                                             },
+    "WPFTweaksDisableTransparency":  {
+                                         "Content":  "Disable Windows Transparency Effects",
+                                         "Description":  "Disables acrylic and transparency effects in the Windows shell to reduce DWM GPU usage.",
+                                         "category":  "Standard Tweaks",
+                                         "panel":  "1",
+                                         "Order":  "a008_",
+                                         "registry":  [
+                                                          {
+                                                              "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+                                                              "Name":  "EnableTransparency",
+                                                              "Type":  "DWord",
+                                                              "Value":  "0",
+                                                              "OriginalValue":  "1"
+                                                          }
+                                                      ]
+                                     },
+    "WPFTweaksBackgroundApps":  {
+                                    "Content":  "Disable Background Apps",
+                                    "Description":  "Prevents Universal Windows Platform (UWP) apps from running, receiving info, or sending notifications in the background.",
+                                    "category":  "Standard Tweaks",
+                                    "panel":  "1",
+                                    "Order":  "a009_",
+                                    "registry":  [
+                                                     {
+                                                         "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications",
+                                                         "Name":  "GlobalUserDisabled",
+                                                         "Type":  "DWord",
+                                                         "Value":  "1",
+                                                         "OriginalValue":  "0"
+                                                     },
+                                                     {
+                                                         "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+                                                         "Name":  "BackgroundAppGlobalToggle",
+                                                         "Type":  "DWord",
+                                                         "Value":  "0",
+                                                         "OriginalValue":  "1"
+                                                     },
+                                                     {
+                                                         "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppPrivacy",
+                                                         "Name":  "LetAppsRunInBackground",
+                                                         "Type":  "DWord",
+                                                         "Value":  "2",
+                                                         "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                     }
+                                                 ]
+                                },
+    "WPFTweaksPrivacySuite":  {
+                                  "Content":  "Disable Telemetry, Activity History, App Launch Tracking \u0026 Advertising ID",
+                                  "Description":  "Applies privacy settings from Windows Settings -\u003e Privacy: disables Advertising ID, App Launch Tracking, Ink \u0026 Typing personalization, Diagnostic Data, and Activity History.",
+                                  "category":  "Standard Tweaks",
+                                  "panel":  "1",
+                                  "Order":  "a010_",
+                                  "registry":  [
+                                                   {
+                                                       "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+                                                       "Name":  "Enabled",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "1"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                       "Name":  "Start_TrackProgs",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "1"
+                                                   },
+                                                   {
+                                                       "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+                                                       "Name":  "AllowTelemetry",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                   },
+                                                   {
+                                                       "Path":  "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection",
+                                                       "Name":  "AllowTelemetry",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "1"
+                                                   },
+                                                   {
+                                                       "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+                                                       "Name":  "EnableActivityFeed",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                   },
+                                                   {
+                                                       "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+                                                       "Name":  "PublishUserActivities",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                   },
+                                                   {
+                                                       "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+                                                       "Name":  "UploadUserActivities",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Software\\Microsoft\\InputPersonalization",
+                                                       "Name":  "RestrictImplicitInkCollection",
+                                                       "Type":  "DWord",
+                                                       "Value":  "1",
+                                                       "OriginalValue":  "0"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Software\\Microsoft\\InputPersonalization",
+                                                       "Name":  "RestrictImplicitTextCollection",
+                                                       "Type":  "DWord",
+                                                       "Value":  "1",
+                                                       "OriginalValue":  "0"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Software\\Microsoft\\Siuf\\Rules",
+                                                       "Name":  "NumberOfSIUFInPeriod",
+                                                       "Type":  "DWord",
+                                                       "Value":  "0",
+                                                       "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                   }
+                                               ]
+                              },
+    "WPFTweaksDeliveryOptimization":  {
+                                          "Content":  "Disable Windows Update P2P Delivery Optimization",
+                                          "Description":  "Prevents Windows from using your bandwidth to upload updates to other PCs over the Internet.",
+                                          "category":  "Standard Tweaks",
+                                          "panel":  "1",
+                                          "Order":  "a011_",
+                                          "registry":  [
+                                                           {
+                                                               "Path":  "HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\DeliveryOptimization\\Config",
+                                                               "Name":  "DODownloadMode",
+                                                               "Type":  "DWord",
+                                                               "Value":  "0",
+                                                               "OriginalValue":  "1"
+                                                           },
+                                                           {
+                                                               "Path":  "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization",
+                                                               "Name":  "DODownloadMode",
+                                                               "Type":  "DWord",
+                                                               "Value":  "0",
+                                                               "OriginalValue":  "\u003cRemoveEntry\u003e"
+                                                           }
+                                                       ]
+                                      },
+    "WPFTweaksVisualFXPerformance":  {
+                                         "Content":  "Set Visual Effects for Best Performance (Keep Font Smoothing \u0026 Thumbnails)",
+                                         "Description":  "Configures Windows Visual Effects for maximum performance while preserving smooth fonts and image thumbnails.",
+                                         "category":  "Standard Tweaks",
+                                         "panel":  "1",
+                                         "Order":  "a012_",
+                                         "registry":  [
+                                                          {
+                                                              "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects",
+                                                              "Name":  "VisualFXSetting",
+                                                              "Type":  "DWord",
+                                                              "Value":  "3",
+                                                              "OriginalValue":  "0"
+                                                          },
+                                                          {
+                                                              "Path":  "HKCU:\\Control Panel\\Desktop",
+                                                              "Name":  "UserPreferencesMask",
+                                                              "Type":  "Binary",
+                                                              "Value":  "9012038010000000",
+                                                              "OriginalValue":  "9E1E078012000000"
+                                                          },
+                                                          {
+                                                              "Path":  "HKCU:\\Control Panel\\Desktop",
+                                                              "Name":  "FontSmoothing",
+                                                              "Type":  "String",
+                                                              "Value":  "2",
+                                                              "OriginalValue":  "2"
+                                                          },
+                                                          {
+                                                              "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                              "Name":  "IconsOnly",
+                                                              "Type":  "DWord",
+                                                              "Value":  "0",
+                                                              "OriginalValue":  "0"
+                                                          },
+                                                          {
+                                                              "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                              "Name":  "ListviewAlphaSelect",
+                                                              "Type":  "DWord",
+                                                              "Value":  "0",
+                                                              "OriginalValue":  "1"
+                                                          },
+                                                          {
+                                                              "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                              "Name":  "ListviewShadow",
+                                                              "Type":  "DWord",
+                                                              "Value":  "0",
+                                                              "OriginalValue":  "1"
+                                                          },
+                                                          {
+                                                              "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+                                                              "Name":  "TaskbarAnimations",
+                                                              "Type":  "DWord",
+                                                              "Value":  "0",
+                                                              "OriginalValue":  "1"
+                                                          }
+                                                      ]
+                                     },
+    "WPFTweaksMouseAcceleration":  {
+                                       "Content":  "Disable Mouse Acceleration (Raw Input 1:1)",
+                                       "Description":  "Unchecks \u0027Enhance pointer precision\u0027 and sets pointer speed to 6/11 for 1:1 raw mouse movement.",
+                                       "category":  "Standard Tweaks",
+                                       "panel":  "1",
+                                       "Order":  "a013_",
+                                       "registry":  [
+                                                        {
+                                                            "Path":  "HKCU:\\Control Panel\\Mouse",
+                                                            "Name":  "MouseSpeed",
+                                                            "Type":  "String",
+                                                            "Value":  "0",
+                                                            "OriginalValue":  "1"
+                                                        },
+                                                        {
+                                                            "Path":  "HKCU:\\Control Panel\\Mouse",
+                                                            "Name":  "MouseThreshold1",
+                                                            "Type":  "String",
+                                                            "Value":  "0",
+                                                            "OriginalValue":  "6"
+                                                        },
+                                                        {
+                                                            "Path":  "HKCU:\\Control Panel\\Mouse",
+                                                            "Name":  "MouseThreshold2",
+                                                            "Type":  "String",
+                                                            "Value":  "0",
+                                                            "OriginalValue":  "10"
+                                                        },
+                                                        {
+                                                            "Path":  "HKCU:\\Control Panel\\Mouse",
+                                                            "Name":  "MouseSensitivity",
+                                                            "Type":  "String",
+                                                            "Value":  "10",
+                                                            "OriginalValue":  "10"
+                                                        }
+                                                    ]
+                                   },
+    "WPFTweaksUltimatePerformance":  {
+                                         "Content":  "Enable and Activate Ultimate Performance Power Plan",
+                                         "Description":  "Unlocks and activates the hidden Windows Ultimate Performance power scheme.",
+                                         "category":  "Standard Tweaks",
+                                         "panel":  "1",
+                                         "Order":  "a014_",
+                                         "InvokeScript":  [
+                                                              "$ultimateGuid = \u0027e9a42b02-d5df-448d-aa00-03f14749eb61\u0027",
+                                                              "$existing = powercfg -list | Select-String -Pattern $ultimateGuid",
+                                                              "if (-not $existing) {",
+                                                              "    $output = powercfg -duplicatescheme $ultimateGuid",
+                                                              "    if ($output -match \u0027([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})\u0027) {",
+                                                              "        powercfg -setactive $matches[1]",
+                                                              "    }",
+                                                              "} else {",
+                                                              "    if ($existing -match \u0027([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})\u0027) {",
+                                                              "        powercfg -setactive $matches[1]",
+                                                              "    }",
+                                                              "}"
+                                                          ],
+                                         "UndoScript":  [
+                                                            "powercfg -setactive 381b4222-f694-41f0-9685-ff5bb260df2e"
+                                                        ]
+                                     },
+    "WPFTweaksFastBootTime":  {
+                                  "Content":  "Optimize Boot Timeout and Shutdown Speed",
+                                  "Description":  "Sets boot menu timeout to 3 seconds (msconfig standard) and reduces service/app kill timeout during shutdown/reboot.",
+                                  "category":  "Standard Tweaks",
+                                  "panel":  "1",
+                                  "Order":  "a015_",
+                                  "registry":  [
+                                                   {
+                                                       "Path":  "HKLM:\\SYSTEM\\CurrentControlSet\\Control",
+                                                       "Name":  "WaitToKillServiceTimeout",
+                                                       "Type":  "String",
+                                                       "Value":  "2000",
+                                                       "OriginalValue":  "5000"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Control Panel\\Desktop",
+                                                       "Name":  "AutoEndTasks",
+                                                       "Type":  "String",
+                                                       "Value":  "1",
+                                                       "OriginalValue":  "0"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Control Panel\\Desktop",
+                                                       "Name":  "WaitToKillAppTimeout",
+                                                       "Type":  "String",
+                                                       "Value":  "2000",
+                                                       "OriginalValue":  "20000"
+                                                   },
+                                                   {
+                                                       "Path":  "HKCU:\\Control Panel\\Desktop",
+                                                       "Name":  "HungAppTimeout",
+                                                       "Type":  "String",
+                                                       "Value":  "1000",
+                                                       "OriginalValue":  "5000"
+                                                   }
+                                               ],
+                                  "InvokeScript":  [
+                                                       "bcdedit /timeout 3 | Out-Null"
+                                                   ],
+                                  "UndoScript":  [
+                                                     "bcdedit /timeout 30 | Out-Null"
+                                                 ]
+                              },
+    "WPFTweaksStorageAndTempCleanup":  {
+                                           "Content":  "Enable Storage Sense and Clean Temporary Files",
+                                           "Description":  "Enables Windows Storage Sense automatic cleanup and removes residual files in Temp and %Temp%.",
+                                           "category":  "Standard Tweaks",
+                                           "panel":  "1",
+                                           "Order":  "a016_",
+                                           "registry":  [
+                                                            {
+                                                                "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                                                                "Name":  "01",
+                                                                "Type":  "DWord",
+                                                                "Value":  "1",
+                                                                "OriginalValue":  "0"
+                                                            },
+                                                            {
+                                                                "Path":  "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\StorageSense\\Parameters\\StoragePolicy",
+                                                                "Name":  "04",
+                                                                "Type":  "DWord",
+                                                                "Value":  "1",
+                                                                "OriginalValue":  "0"
+                                                            }
+                                                        ],
+                                           "InvokeScript":  [
+                                                                "$tempFolders = @(\"$env:TEMP\\*\", \"$env:windir\\Temp\\*\")",
+                                                                "Remove-Item -Path $tempFolders -Recurse -Force -ErrorAction SilentlyContinue"
+                                                            ]
+                                       },
+    "WPFTweaksServices":  {
+                              "Content":  "Set Background Services to Manual (Safe Standard Profile)",
+                              "Description":  "Sets non-essential telemetry, diagnostic, and rare background services to Manual or Disabled so they only run when explicitly needed.",
+                              "category":  "Standard Tweaks",
+                              "panel":  "1",
+                              "Order":  "a017_",
+                              "service":  [
+                                              {
+                                                  "Name":  "DiagTrack",
+                                                  "StartupType":  "Disabled",
+                                                  "OriginalType":  "Automatic"
+                                              },
+                                              {
+                                                  "Name":  "dmwappushservice",
+                                                  "StartupType":  "Disabled",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "MapsBroker",
+                                                  "StartupType":  "Disabled",
+                                                  "OriginalType":  "AutomaticDelayedStart"
+                                              },
+                                              {
+                                                  "Name":  "Fax",
+                                                  "StartupType":  "Manual",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "XblAuthManager",
+                                                  "StartupType":  "Manual",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "XblGameSave",
+                                                  "StartupType":  "Manual",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "XboxNetApiSvc",
+                                                  "StartupType":  "Manual",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "XboxGipSvc",
+                                                  "StartupType":  "Manual",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "RetailDemo",
+                                                  "StartupType":  "Disabled",
+                                                  "OriginalType":  "Manual"
+                                              },
+                                              {
+                                                  "Name":  "WerSvc",
+                                                  "StartupType":  "Manual",
+                                                  "OriginalType":  "Manual"
+                                              }
+                                          ]
+                          }
+}

@@ -225,7 +225,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 # Variable to sync between runspaces
 $sync = [Hashtable]::Synchronized(@{})
 $sync.version = "26.10.31"
-$sync.IsLocalCompile = "true" -eq "true"
+$sync.IsLocalCompile = "false" -eq "true"
 $sync.configs = @{}
 $sync.Buttons = [System.Collections.Generic.List[PSObject]]::new()
 $sync.preferences = @{}
@@ -15164,10 +15164,7 @@ $sync.configs.preset = @'
     "WPFTweaksStorageAndTempCleanup",
     "WPFTweaksServices",
     "WPFTweaksTele",
-    "WPFTweaksActivity",
-    "WPFTweaksLocation",
-    "WPFTweaksDiskCleanup",
-    "WPFTweaksDeleteTempFiles"
+    "WPFTweaksLocation"
   ],
   "Minimal": [
     "WPFTweaksConsumerFeatures",
@@ -15231,12 +15228,9 @@ $sync.configs.preset = @'
     "WPFTweaksWindowsAI",
     "WPFTweaksConsumerFeatures",
     "WPFTweaksDeliveryOptimization",
-    "WPFTweaksActivity",
     "WPFTweaksLocation",
     "WPFTweaksFastBootTime",
     "WPFTweaksStorageAndTempCleanup",
-    "WPFTweaksDiskCleanup",
-    "WPFTweaksDeleteTempFiles",
     "WPFTweaksEndTaskOnTaskbar"
   ]
 }
@@ -15520,7 +15514,7 @@ $sync.configs.tweaks = @'
   },
   "WPFTweaksServices": {
     "Content": "Safe Windows Services Optimization",
-    "Description": "Sets safe non-essential diagnostics and telemetry services (DiagTrack, MapsBroker, Fax, etc.) to Manual or Disabled.",
+    "Description": "Disables non-essential diagnostics, telemetry, maps and retail demo services (DiagTrack, dmwappushservice, MapsBroker, RetailDemo).",
     "category": "Standard Tweaks",
     "panel": "1",
     "Order": "a017_",
@@ -15541,38 +15535,8 @@ $sync.configs.tweaks = @'
         "OriginalType": "AutomaticDelayedStart"
       },
       {
-        "Name": "Fax",
-        "StartupType": "Manual",
-        "OriginalType": "Manual"
-      },
-      {
-        "Name": "XblAuthManager",
-        "StartupType": "Manual",
-        "OriginalType": "Manual"
-      },
-      {
-        "Name": "XblGameSave",
-        "StartupType": "Manual",
-        "OriginalType": "Manual"
-      },
-      {
-        "Name": "XboxNetApiSvc",
-        "StartupType": "Manual",
-        "OriginalType": "Manual"
-      },
-      {
-        "Name": "XboxGipSvc",
-        "StartupType": "Manual",
-        "OriginalType": "Manual"
-      },
-      {
         "Name": "RetailDemo",
         "StartupType": "Disabled",
-        "OriginalType": "Manual"
-      },
-      {
-        "Name": "WerSvc",
-        "StartupType": "Manual",
         "OriginalType": "Manual"
       }
     ],
@@ -17121,7 +17085,7 @@ $sync.configs.tweaks = @'
   },
   "WPFTweaksGameModeAndHAGS": {
     "Content": "Enable Game Mode and Hardware GPU Scheduling (HAGS)",
-    "Description": "Enables Windows Game Mode and Hardware-Accelerated GPU Scheduling (HAGS) for lower latency and smoother FPS.",
+    "Description": "Enables Windows Game Mode and Hardware-Accelerated GPU Scheduling (HAGS) for lower latency and smoother FPS. Hardware GPU scheduling needs a supported GPU and driver, and takes effect after a restart.",
     "category": "Standard Tweaks",
     "panel": "1",
     "Order": "a006_",
@@ -17214,7 +17178,7 @@ $sync.configs.tweaks = @'
   },
   "WPFTweaksBackgroundApps": {
     "Content": "Disable Background Apps",
-    "Description": "Prevents Microsoft Store (UWP) apps from running in the background and silently consuming CPU and RAM.",
+    "Description": "Prevents Microsoft Store (UWP) apps from running in the background and silently consuming CPU and RAM. Note: this also stops Store apps from running in the background, so apps such as WhatsApp, Phone Link or the new Teams may not show notifications while closed.",
     "category": "Standard Tweaks",
     "panel": "1",
     "Order": "a009_",
@@ -17245,7 +17209,7 @@ $sync.configs.tweaks = @'
   },
   "WPFTweaksPrivacySuite": {
     "Content": "Disable Privacy Tracking, Advertising ID and Telemetry",
-    "Description": "Disables Windows advertising ID, app launch tracking, and diagnostic telemetry collection.",
+    "Description": "Disables Windows advertising ID, app launch tracking, and diagnostic telemetry collection. Note: Windows Home and Pro treat telemetry level 0 as 1 (required diagnostic data); only Enterprise and Education honor 0.",
     "category": "Standard Tweaks",
     "panel": "1",
     "Order": "a010_",
@@ -17452,7 +17416,7 @@ $sync.configs.tweaks = @'
   },
   "WPFTweaksUltimatePerformance": {
     "Content": "Unlock & Enable Ultimate Performance Power Plan",
-    "Description": "Unlocks and activates the hidden Ultimate Performance power scheme to eliminate micro-stutters and aggressive core throttling.",
+    "Description": "Unlocks and activates the hidden Ultimate Performance power scheme to eliminate micro-stutters and aggressive core throttling. Not recommended on laptops: it keeps the CPU at higher clocks and drains the battery faster.",
     "category": "Standard Tweaks",
     "panel": "1",
     "Order": "a014_",

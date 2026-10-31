@@ -299,7 +299,8 @@ Describe "XAML document" {
             "WPFTab3:Config",
             "WPFTab4:Updates",
             "WPFTab5:Win11ISO",
-            "WPFTab6:AppX"
+            "WPFTab6:AppX",
+            "WPFTab7:StandardTweaks"
         )
 
         if (@($actualTabs).Count -ne $expectedTabs.Count) {
@@ -356,7 +357,8 @@ Describe "XAML document" {
         $comboToggleStyle | Should -Not -BeNullOrEmpty
         $comboToggle.GetAttribute("Style") | Should -Be "{StaticResource ComboBoxToggleButtonStyle}"
         $comboItemStyle | Should -Not -BeNullOrEmpty
-        $navButtons.Count | Should -Be 5
+        # Install, Tweaks, Config, Updates, Win11ISO and Standard Tweaks; AppX has no nav button
+        $navButtons.Count | Should -Be 6
         foreach ($navButton in $navButtons) {
             $navButton.GetAttribute("Style") | Should -Be "{StaticResource TabToggleButton}"
         }

@@ -1,8 +1,7 @@
-# Runs the pre-release version of winutil
+# Runs the latest MejorarWindows build from the main branch
 
-$latestTag = (Invoke-RestMethod https://api.github.com/repos/ChrisTitusTech/winutil/tags).Name | Select-Object -First 1
-$uri = "https://github.com/ChrisTitusTech/winutil/releases/download/$latestTag/winutil.ps1"
-$scriptPath = Join-Path $env:TEMP "winutil-$latestTag.ps1"
+$uri = "https://raw.githubusercontent.com/rodrigoquezadab/MejorarWindows/main/winutil.ps1"
+$scriptPath = Join-Path $env:TEMP "winutil-mejorarwindows.ps1"
 
 Invoke-WebRequest -Uri $uri -OutFile $scriptPath -UseBasicParsing -ErrorAction Stop
 

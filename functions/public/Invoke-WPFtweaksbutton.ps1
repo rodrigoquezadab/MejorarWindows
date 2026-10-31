@@ -6,8 +6,15 @@ function Invoke-WPFtweaksbutton {
 
   #>
 
-  $Tweaks = $sync.selectedTweaks
-  $dnsProvider = $sync["WPFchangedns"].text
+  param(
+    # The tweaks to apply. The Standard Tweaks tab passes its own entries only.
+    [string[]]$Tweaks = $sync.selectedTweaks,
+
+    # Leave DNS alone. The DNS picker lives on the Tweaks tab, not in the Standard Tweaks suite.
+    [switch]$SkipDns
+  )
+
+  $dnsProvider = if ($SkipDns) { $null } else { $sync["WPFchangedns"].text }
   if (-not ($dnsProvider)) {
     $dnsProvider = "Default"
   }

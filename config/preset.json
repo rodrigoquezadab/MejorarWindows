@@ -1,5 +1,6 @@
 ﻿{
     "Standard":  [
+                     "WPFTweaksRestorePoint",
                      "WPFTweaksDVR",
                      "WPFTweaksGameModeAndHAGS",
                      "WPFTweaksDisableNotificationsAndTips",
@@ -9,7 +10,6 @@
                      "WPFTweaksDeliveryOptimization",
                      "WPFTweaksVisualFXPerformance",
                      "WPFTweaksMouseAcceleration",
-                     "WPFTweaksUltimatePerformance",
                      "WPFTweaksFastBootTime",
                      "WPFTweaksStorageAndTempCleanup",
                      "WPFTweaksServices",
@@ -65,6 +65,7 @@
                         "WPFAppxMicrosoft_BingSearch"
                     ],
     "Office":  [
+                   "WPFTweaksRestorePoint",
                    "WPFTweaksDisableAllAnimations",
                    "WPFTweaksDisableNotificationsAndTips",
                    "WPFTweaksDisableNotifications",

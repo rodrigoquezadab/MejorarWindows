@@ -247,6 +247,7 @@ Describe "Tweaks config" {
                     $claims[$key] = @{}
                 }
                 $claims[$key][$tweak.Name] = [pscustomobject]@{
+                    Value         = [string]$registryEntry.Value
                     OriginalValue = [string]$registryEntry.OriginalValue
                     Type          = [string]$registryEntry.Type
                 }
@@ -255,10 +256,30 @@ Describe "Tweaks config" {
 
         $conflicts = New-Object System.Collections.Generic.List[string]
         foreach ($key in $claims.Keys) {
-            $variants = @($claims[$key].Values | Select-Object -Unique -Property OriginalValue, Type)
-            if ($variants.Count -gt 1) {
-                $owners = ($claims[$key].Keys | Sort-Object) -join ", "
-                $conflicts.Add("$key claimed with conflicting originals/types by: $owners")
+            $owners = ($claims[$key].Keys | Sort-Object) -join ", "
+
+            # A toggle's OriginalValue is its off state, not the Windows default, so toggles are
+            # compared with each other here and with tweaks below
+            $toggleClaims = @($claims[$key].GetEnumerator() | Where-Object { $_.Key -like "WPFToggle*" } | ForEach-Object { $_.Value })
+            $tweakClaims = @($claims[$key].GetEnumerator() | Where-Object { $_.Key -notlike "WPFToggle*" } | ForEach-Object { $_.Value })
+
+            foreach ($group in @(, $toggleClaims) + @(, $tweakClaims)) {
+                if (@($group | Select-Object -Unique -Property OriginalValue, Type).Count -gt 1) {
+                    $conflicts.Add("$key claimed with conflicting originals/types by: $owners")
+                }
+            }
+
+            # A tweak may share a value with a toggle when it only writes the toggle's own two
+            # states: applying or undoing it then leaves the toggle showing on or off, never neither
+            foreach ($toggleClaim in $toggleClaims) {
+                $toggleStates = @($toggleClaim.Value, $toggleClaim.OriginalValue)
+                foreach ($tweakClaim in $tweakClaims) {
+                    if ($tweakClaim.Type -ne $toggleClaim.Type -or
+                        $toggleStates -notcontains $tweakClaim.Value -or
+                        $toggleStates -notcontains $tweakClaim.OriginalValue) {
+                        $conflicts.Add("$key written by a tweak outside its toggle's on/off states: $owners")
+                    }
+                }
             }
         }
 

@@ -32,13 +32,26 @@ function Initialize-WinUtilTabContent {
                 Initialize-WinUtilInstallTabControls
             }
             "Tweaks" {
-                Invoke-WPFUIElements -configVariable $sync.configs.tweaks -targetGridName "tweakspanel" -columncount 2 -Yield:$Yield
+                # The Standard Tweaks suite is built on its own tab. Building it here as well would
+                # make a second control under each name, and $sync keeps only one of them.
+                $standardTweakKeys = Get-WinUtilStandardTweakKeys
+                $tweaksTabConfig = [ordered]@{}
+                foreach ($entry in $sync.configs.tweaks.PSObject.Properties) {
+                    if ($standardTweakKeys -notcontains $entry.Name) {
+                        $tweaksTabConfig[$entry.Name] = $entry.Value
+                    }
+                }
+                Invoke-WPFUIElements -configVariable ([pscustomobject]$tweaksTabConfig) -targetGridName "tweakspanel" -columncount 2 -Yield:$Yield
             }
             "Config" {
                 Invoke-WPFUIElements -configVariable $sync.configs.feature -targetGridName "featurespanel" -columncount 2 -Yield:$Yield
             }
             "StandardTweaks" {
-                Invoke-WPFUIElements -configVariable $sync.configs.standardtweaks -targetGridName "standardtweakspanel" -columncount 2 -Yield:$Yield
+                $standardTabConfig = [ordered]@{}
+                foreach ($key in Get-WinUtilStandardTweakKeys) {
+                    $standardTabConfig[$key] = $sync.configs.tweaks.$key
+                }
+                Invoke-WPFUIElements -configVariable ([pscustomobject]$standardTabConfig) -targetGridName "standardtweakspanel" -columncount 2 -Yield:$Yield
             }
             "AppX" {
                 Invoke-WPFUIElements -configVariable $sync.configs.appx -targetGridName "appxpanel" -columncount 2 -Yield:$Yield

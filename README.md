@@ -48,17 +48,17 @@ cd MejorarWindows
 En esta versión se han implementado íntegramente las optimizaciones de la guía técnica de optimización (referencia: *Guía de Optimización sin Programas - RickyEdit*) bajo dos modalidades:
 
 ### 1. En la Selección Estándar (`Standard Preset`)
-Al pulsar el botón **"Standard"** en la pestaña *Tweaks* (o al ejecutar por línea de comandos con `-Preset Standard`), se marcan y aplican automáticamente los siguientes 18 ajustes:
+Al pulsar el botón **"Standard"** en la pestaña *Tweaks* (o al ejecutar por línea de comandos con `-Preset Standard`), se marcan y aplican automáticamente los siguientes 18 ajustes (el primero crea un punto de restauración antes de tocar nada):
 
 | Identificador | Descripción Técnica | Categoría |
 | :--- | :--- | :--- |
+| `WPFTweaksRestorePoint` | Crea un punto de restauración del sistema antes de aplicar el resto de los ajustes. | Essential Tweaks |
 | `WPFTweaksDVR` | Desactiva Game DVR, Xbox Game Bar y capturas en segundo plano (elimina input lag y pérdida de FPS). | Essential Tweaks |
 | `WPFTweaksGameModeAndHAGS` | Activa el Modo Juego de Windows y la Programación de GPU acelerada por hardware (HAGS). | Essential Tweaks |
 | `WPFTweaksMouseAcceleration` | Desmarca *"Mejorar la precisión del puntero"* y fija velocidad en 6/11 para respuesta 1:1 real (*Raw Input*). | Essential Tweaks |
 | `WPFTweaksPrivacySuite` | Desactiva ID de publicidad, seguimiento de inicio de apps, telemetría y recolección de escritura/tinta. | Essential Tweaks |
 | `WPFTweaksBackgroundApps` | Impide que aplicaciones UWP se ejecuten silenciosamente en segundo plano. | Essential Tweaks |
 | `WPFTweaksDeliveryOptimization`| Desactiva la optimización de distribución P2P de Windows Update para evitar picos de ping y consumo de ancho de banda. | Essential Tweaks |
-| `WPFTweaksUltimatePerformance` | Desbloquea y activa el esquema oculto de **Máximo Rendimiento** (*Ultimate Performance*). | Essential Tweaks |
 | `WPFTweaksDisableNotificationsAndTips` | Desactiva sugerencias de Windows, trucos de pantalla de bloqueo y notificaciones emergentes. | Essential Tweaks |
 | `WPFTweaksDisableTransparency`| Desactiva transparencias y efectos acrílicos en el shell, reduciendo el consumo de GPU por DWM. | Essential Tweaks |
 | `WPFTweaksVisualFXPerformance` | Efectos visuales de rendimiento manteniendo fuentes de pantalla suaves y vistas en miniatura. | Essential Tweaks |
@@ -73,9 +73,9 @@ Al pulsar el botón **"Standard"** en la pestaña *Tweaks* (o al ejecutar por l�
 
 ### 2. En la Nueva Pestaña Dedicada: `Standard Tweaks`
 En la barra superior de pestañas se ha agregado una nueva sección **`Standard Tweaks`** (accesible mediante el atajo de teclado `S` o el botón en el panel de Tweaks) que incluye:
-- Panel exclusivo con la suite completa de optimizaciones del perfil estándar.
+- Panel exclusivo con la suite completa de optimizaciones del perfil estándar. Incluye el plan de energía **Máximo Rendimiento**, que el preset Standard no marca porque en notebooks gasta más batería.
 - Botones de **Select All** y **Clear Selection**.
-- Botón **Run Standard Tweaks** para aplicar únicamente esta suite.
+- Botón **Run Standard Tweaks** para aplicar únicamente esta suite (lo marcado en otras pestañas y el DNS no se tocan).
 - Botón **Undo Selected** para restaurar los valores de fábrica originales en cualquier momento con total reversibilidad.
 
 ---

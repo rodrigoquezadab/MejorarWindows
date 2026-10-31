@@ -4,6 +4,7 @@
 BeforeAll {
     $script:repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
     . (Join-Path $script:repoRoot "functions\private\Measure-WinUtilStep.ps1")
+    . (Join-Path $script:repoRoot "functions\private\Get-WinUtilStandardTweakKeys.ps1")
 
     function Test-WinUtilUIAlive { $null -ne $sync.Form -and $null -ne $sync.Form.Dispatcher }
 

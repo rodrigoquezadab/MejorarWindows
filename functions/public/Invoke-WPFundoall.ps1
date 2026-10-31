@@ -6,7 +6,10 @@ function Invoke-WPFundoall {
 
     #>
 
-    $tweaks = $sync.selectedTweaks
+    param(
+        # The tweaks to undo. The Standard Tweaks tab passes its own entries only.
+        [string[]]$Tweaks = $sync.selectedTweaks
+    )
 
     if ($tweaks.count -eq 0) {
         Show-WinUtilMessage -Message "Please check the tweaks you wish to undo." -Title "WinUtil" -Button "OK" -Icon "Warning"

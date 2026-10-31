@@ -177,13 +177,20 @@ function Invoke-WPFButtonAction {
         "WPFGoToStandardTweaks" {Invoke-WPFTab "WPFTab7BT"}
         "WPFBackToTweaksFromStandard" {Invoke-WPFTab "WPFTab2BT"}
         "WPFSelectAllStandardTweaks" {
-            $sync.configs.standardtweaks.PSObject.Properties.Name | ForEach-Object { if ($sync.$_) { $sync.$_.IsChecked = $true } }
+            Get-WinUtilStandardTweakKeys | ForEach-Object { if ($sync.$_) { $sync.$_.IsChecked = $true } }
         }
         "WPFClearStandardTweaks" {
-            $sync.configs.standardtweaks.PSObject.Properties.Name | ForEach-Object { if ($sync.$_) { $sync.$_.IsChecked = $false } }
+            Get-WinUtilStandardTweakKeys | ForEach-Object { if ($sync.$_) { $sync.$_.IsChecked = $false } }
         }
-        "WPFRunStandardTweaks" { Invoke-WPFtweaksbutton }
-        "WPFUndoStandardTweaks" { Invoke-WPFundoall }
+        # These two act on the suite only: tweaks still checked on the Tweaks tab are left alone
+        "WPFRunStandardTweaks" {
+            $standardTweakKeys = Get-WinUtilStandardTweakKeys
+            Invoke-WPFtweaksbutton -Tweaks @($sync.selectedTweaks | Where-Object { $standardTweakKeys -contains $_ }) -SkipDns
+        }
+        "WPFUndoStandardTweaks" {
+            $standardTweakKeys = Get-WinUtilStandardTweakKeys
+            Invoke-WPFundoall -Tweaks @($sync.selectedTweaks | Where-Object { $standardTweakKeys -contains $_ })
+        }
         "WPFBackToTweaks" {Invoke-WPFTab "WPFTab2BT"}
         "WPFInstallSelectedAppx" {Invoke-WPFAppxInstall}
         "WPFRemoveSelectedAppx" {Invoke-WPFAppxRemoval}

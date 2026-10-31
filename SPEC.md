@@ -32,7 +32,7 @@ WinUtil is a Windows PowerShell utility with a WPF interface. The repository is 
 - `lint/PSScriptAnalyser.ps1`: PowerShell Script Analyzer settings.
 - `tools/title-screen/`: uv project that captures WinUtil's Light and Dark themes and generates the title-screen composite.
 - `docs/`: Astro + Starlight documentation site, with its own `package.json` and build independent of `Compile.ps1`.
-- `winutil.ps1`: ignored generated build artifact.
+- `winutil.ps1`: generated build artifact. In this fork (MejorarWindows) it is tracked in git, because the one-line install downloads it from `main`; only the `build.yaml` workflow commits it.
 
 ## Goals
 
@@ -112,11 +112,11 @@ Because the final script is concatenated, code cannot rely on runtime module imp
 
 - `.\Compile.ps1` verifies the compiler can generate `winutil.ps1`.
 - `.\Compile.ps1 -Run` compiles and launches the generated utility for manual GUI verification.
-- Pester 5.8.0 runs the suite under `pester/*.Tests.ps1`. GitHub Actions (`unittests.yaml`) installs Pester 5.8.0 fresh and runs with `-CI`, which produces `testResults.xml` and exits non-zero on failure.
-- GitHub Actions also runs PowerShell Script Analyzer with `lint/PSScriptAnalyser.ps1` on every push.
-- The generated `winutil.ps1` may appear locally after compile. It remains ignored build output (see root `.gitignore`) and must not be committed.
-- The manually triggered title-screen workflow compiles WinUtil from `main` and opens an image-only pull request when the generated composite changes. These pull requests require manual review. Failed runs retain diagnostics for 14 days.
+- Pester 5.8.0 runs the suite under `pester/*.Tests.ps1`. In this fork, GitHub Actions (`.github/workflows/build.yaml`) runs on every push and pull request on Windows with PowerShell 7: it installs Pester 5.8.0 fresh, compiles `winutil.ps1`, checks that it parses, runs the suite (`pesterResults.xml` is kept as a run artifact) and fails on any failing test.
+- Script Analyzer is not part of the fork's CI; run it locally as AGENTS.md describes.
+- The generated `winutil.ps1` may appear locally after compile. Treat that copy as disposable and do not commit it: `build.yaml` publishes the tested build.
+- Upstream's title-screen, docs and issue-triage workflows are not carried by this fork. The issue-triage tests skip their workflow checks while `.github/workflows/triage-tools.yaml` is absent.
 
 ## Release Artifact
 
-GitHub Actions is responsible for producing the release `winutil.ps1` from repository sources. A release is considered valid only if the generated script came from the compile process, not from direct manual edits to `winutil.ps1`.
+GitHub Actions is responsible for producing the published `winutil.ps1` from repository sources. In this fork, `build.yaml` does it on every push to `main` whose tests pass: it commits the compiled script to `main` unless only the build date changed. A published script is valid only if it came from that compile process, not from direct manual edits to `winutil.ps1`.

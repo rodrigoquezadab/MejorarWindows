@@ -1,0 +1,111 @@
+name: Build and test
+
+# Every push and pull request is compiled and tested on Windows. A push to main whose tests pass
+# also publishes the compiled winutil.ps1 back to main, which is what
+# "irm .../main/winutil.ps1 | iex" downloads.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Pester 5.8.0
+        run: Install-Module -Name Pester -RequiredVersion 5.8.0 -Repository PSGallery -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Compile winutil.ps1
+        run: |
+          .\Compile.ps1
+          $tokens = $null
+          $syntaxErrors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path .\winutil.ps1), [ref]$tokens, [ref]$syntaxErrors) | Out-Null
+          if ($syntaxErrors.Count -gt 0) {
+            $syntaxErrors | Out-String | Write-Error
+            exit 1
+          }
+
+      - name: Run Pester
+        run: |
+          Import-Module Pester -RequiredVersion 5.8.0 -Force
+          $config = New-PesterConfiguration
+          $config.Run.Path = 'pester'
+          $config.Run.Exit = $true
+          $config.Output.Verbosity = 'Detailed'
+          $config.TestResult.Enabled = $true
+          $config.TestResult.OutputPath = 'pesterResults.xml'
+          Invoke-Pester -Configuration $config
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pester-results
+          path: pesterResults.xml
+
+      - name: Upload compiled script
+        uses: actions/upload-artifact@v4
+        with:
+          name: winutil
+          path: winutil.ps1
+
+  publish:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    # One publish at a time, so two quick pushes cannot race to update main
+    concurrency:
+      group: publish-main
+      cancel-in-progress: false
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: winutil
+          path: build
+
+      - name: Commit winutil.ps1 if it changed
+        run: |
+          # A newer push has its own run, which publishes the newer build
+          $head = (git rev-parse HEAD).Trim()
+          if ($head -ne '${{ github.sha }}') {
+            Write-Host "main moved on to $head; leaving the publish to that run."
+            exit 0
+          }
+
+          # The build date changes every day, so a build that differs only in its version lines
+          # is not worth a commit
+          $versionLine = '^\s*(Version\s*:|\$sync\.version\s*=)'
+          $published = if (Test-Path .\winutil.ps1) { Get-Content .\winutil.ps1 | Where-Object { $_ -notmatch $versionLine } } else { @() }
+          $built = Get-Content .\build\winutil.ps1 | Where-Object { $_ -notmatch $versionLine }
+          if (($published -join "`n") -ceq ($built -join "`n")) {
+            Write-Host "winutil.ps1 is already up to date."
+            exit 0
+          }
+
+          Copy-Item .\build\winutil.ps1 .\winutil.ps1 -Force
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add winutil.ps1
+          git commit -m "Build winutil.ps1 from ${{ github.sha }}"
+          git push origin HEAD:main

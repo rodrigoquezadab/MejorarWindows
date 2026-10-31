@@ -2,16 +2,21 @@
 # Tests - GitHub Issue Triage Workflow
 #===========================================================================
 
+# MejorarWindows does not carry upstream's issue triage workflow (it would act on this repository
+# with upstream's maintainer list), so the checks of that file are skipped when it is absent.
+# Evaluated at discovery, which -Skip needs.
+$triageWorkflowMissing = -not (Test-Path -LiteralPath (Join-Path $PSScriptRoot "..\.github\workflows\triage-tools.yaml"))
+
 BeforeAll {
     $script:repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
     $script:workflowPath = Join-Path $script:repoRoot ".github\workflows\triage-tools.yaml"
     $script:guidePath = Join-Path $script:repoRoot "docs\src\content\docs\code-reference\issue-triage.mdx"
-    $script:workflow = Get-Content -Path $script:workflowPath -Raw
+    $script:workflow = if (Test-Path -LiteralPath $script:workflowPath) { Get-Content -Path $script:workflowPath -Raw }
     $script:guide = Get-Content -Path $script:guidePath -Raw
 }
 
 Describe "GitHub issue triage workflow" {
-    It "cannot run against pull requests" {
+    It "cannot run against pull requests" -Skip:$triageWorkflowMissing {
         $script:workflow | Should -Match '(?m)^\s+if:\s+\$\{\{\s*!github\.event\.issue\.pull_request\s*\}\}\s*$'
         $script:workflow | Should -Match 'if \(context\.payload\.issue\.pull_request\)'
         $script:workflow | Should -Match '(?m)^\s+issues:\s+write\s*$'
@@ -20,12 +25,12 @@ Describe "GitHub issue triage workflow" {
         $script:workflow | Should -Not -Match '(?m)^\s+pull-requests:\s+write\s*$'
     }
 
-    It "authorizes trusted users by immutable numeric ID" {
+    It "authorizes trusted users by immutable numeric ID" -Skip:$triageWorkflowMissing {
         $script:workflow | Should -Match 'trustedUsers\.includes\(commentAuthor\.id\)'
         $script:workflow | Should -Not -Match 'trustedUsers\.includes\(commentAuthor\.login\)'
     }
 
-    It "matches one complete command at a time" {
+    It "matches one complete command at a time" -Skip:$triageWorkflowMissing {
         $script:workflow.Contains('const command = comment.body.trim().toLowerCase();') | Should -BeTrue
         $script:workflow.Contains('const triageMatch = command.match(/^\/triage$/);') | Should -BeTrue
         $script:workflow.Contains('const triageOffMatch = command.match(/^\/triageoff$/);') | Should -BeTrue
@@ -36,7 +41,7 @@ Describe "GitHub issue triage workflow" {
         $script:workflow.Contains('} else if (duplicateMatch) {') | Should -BeTrue
     }
 
-    It "preserves existing labels for not-related closures" {
+    It "preserves existing labels for not-related closures" -Skip:$triageWorkflowMissing {
         $notRelatedBlock = [regex]::Match(
             $script:workflow,
             '(?s)reason === "notrelated".*?github\.rest\.issues\.addLabels\(\{.*?labels: \["not-related"\].*?github\.rest\.issues\.update'
@@ -46,7 +51,7 @@ Describe "GitHub issue triage workflow" {
         $notRelatedBlock.Value | Should -Not -Match 'issues\.update\(\{.*?labels:'
     }
 
-    It "validates duplicate targets before closing the issue" {
+    It "validates duplicate targets before closing the issue" -Skip:$triageWorkflowMissing {
         $script:workflow.Contains('const duplicateIssueNumber = Number(duplicateMatch[1]);') | Should -BeTrue
         $script:workflow | Should -Match 'Number\.isSafeInteger\(duplicateIssueNumber\)'
         $script:workflow | Should -Match 'duplicateIssueNumber === issueNumber'

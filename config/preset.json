@@ -14,10 +14,7 @@
                      "WPFTweaksStorageAndTempCleanup",
                      "WPFTweaksServices",
                      "WPFTweaksTele",
-                     "WPFTweaksActivity",
-                     "WPFTweaksLocation",
-                     "WPFTweaksDiskCleanup",
-                     "WPFTweaksDeleteTempFiles"
+                     "WPFTweaksLocation"
                  ],
     "Minimal":  [
                     "WPFTweaksConsumerFeatures",
@@ -81,12 +78,9 @@
                    "WPFTweaksWindowsAI",
                    "WPFTweaksConsumerFeatures",
                    "WPFTweaksDeliveryOptimization",
-                   "WPFTweaksActivity",
                    "WPFTweaksLocation",
                    "WPFTweaksFastBootTime",
                    "WPFTweaksStorageAndTempCleanup",
-                   "WPFTweaksDiskCleanup",
-                   "WPFTweaksDeleteTempFiles",
                    "WPFTweaksEndTaskOnTaskbar"
                ]
 }

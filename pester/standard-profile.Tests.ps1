@@ -71,11 +71,41 @@ Describe "Standard and Office presets" {
         }
     }
 
+    It "do not apply the same change twice" {
+        # Activity History is covered by the privacy suite, which it would partly undo by running
+        # after it, and the temp folders are already emptied by the Storage Sense tweak
+        $preset = Get-WinUtilConfigObject -Name "preset"
+
+        foreach ($presetName in @("Standard", "Office")) {
+            foreach ($redundant in @("WPFTweaksActivity", "WPFTweaksDeleteTempFiles", "WPFTweaksDiskCleanup")) {
+                @($preset.$presetName) | Should -Not -Contain $redundant -Because "$presetName already covers what $redundant does"
+            }
+        }
+    }
+
     It "leave the Ultimate Performance plan out of Standard" {
         # The plan keeps the CPU at full clocks, which on a laptop costs battery and heat
         $preset = Get-WinUtilConfigObject -Name "preset"
 
         @($preset.Standard) | Should -Not -Contain "WPFTweaksUltimatePerformance"
+    }
+}
+
+Describe "Tweak service entries" {
+    It "change the startup type they claim to change" {
+        # An entry whose startup type equals its original never changes anything
+        $tweaks = Get-WinUtilConfigObject -Name "tweaks"
+        $noOps = @(
+            foreach ($tweak in $tweaks.PSObject.Properties) {
+                foreach ($service in @($tweak.Value.service)) {
+                    if ($null -ne $service -and $service.StartupType -eq $service.OriginalType) {
+                        "$($tweak.Name): $($service.Name) $($service.StartupType)"
+                    }
+                }
+            }
+        )
+
+        $noOps | Should -BeNullOrEmpty
     }
 }
 
@@ -185,6 +215,29 @@ Describe "Standard Tweaks tab" {
         Should -Invoke Invoke-WPFundoall -Times 1 -Exactly -ParameterFilter {
             (@($Tweaks) -join ",") -eq "WPFTweaksDVR"
         }
+    }
+}
+
+Describe "run.ps1 launcher" {
+    BeforeAll {
+        $script:runScriptPath = Join-Path $script:repoRoot "run.ps1"
+        $script:runScript = Get-Content -Path $script:runScriptPath -Raw
+    }
+
+    It "never picks winutil.ps1 from the current folder" {
+        # Piped through iex the current folder is wherever the console happens to be, so only the
+        # script's own folder may supply a local copy
+        $script:runScript | Should -Not -Match 'Get-Location|\$PWD|\(Get-Item \.\)'
+        $script:runScript | Should -Match '\$PSCommandPath'
+    }
+
+    It "relaunches a local copy from disk instead of downloading it" {
+        $script:runScript | Should -Match ([regex]::Escape('''-File'', "`"$PSCommandPath`""'))
+    }
+
+    It "is plain ASCII so Windows PowerShell 5.1 reads it unchanged" {
+        $bytes = [System.IO.File]::ReadAllBytes($script:runScriptPath)
+        @($bytes | Where-Object { $_ -gt 127 }) | Should -BeNullOrEmpty
     }
 }
 

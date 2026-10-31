@@ -48,7 +48,7 @@ cd MejorarWindows
 En esta versión se han implementado íntegramente las optimizaciones de la guía técnica de optimización (referencia: *Guía de Optimización sin Programas - RickyEdit*) bajo dos modalidades:
 
 ### 1. En la Selección Estándar (`Standard Preset`)
-Al pulsar el botón **"Standard"** en la pestaña *Tweaks* (o al ejecutar por línea de comandos con `-Preset Standard`), se marcan y aplican automáticamente los siguientes 18 ajustes (el primero crea un punto de restauración antes de tocar nada):
+Al pulsar el botón **"Standard"** en la pestaña *Tweaks* (o al ejecutar por línea de comandos con `-Preset Standard`), se marcan y aplican automáticamente los siguientes 15 ajustes (el primero crea un punto de restauración antes de tocar nada):
 
 | Identificador | Descripción Técnica | Categoría |
 | :--- | :--- | :--- |
@@ -64,12 +64,9 @@ Al pulsar el botón **"Standard"** en la pestaña *Tweaks* (o al ejecutar por l�
 | `WPFTweaksVisualFXPerformance` | Efectos visuales de rendimiento manteniendo fuentes de pantalla suaves y vistas en miniatura. | Essential Tweaks |
 | `WPFTweaksFastBootTime` | Reduce el timeout de arranque a 3 segundos (`msconfig standard`) y acelera el cierre de tareas colgadas al apagar. | Essential Tweaks |
 | `WPFTweaksStorageAndTempCleanup` | Habilita Sensor de Almacenamiento (Storage Sense) y purga de archivos temporales. | Essential Tweaks |
-| `WPFTweaksServices` | Pasa a Manual o Deshabilitado servicios seguros de telemetría y diagnóstico (`DiagTrack`, `MapsBroker`, `Fax`, etc.). | Essential Tweaks |
+| `WPFTweaksServices` | Deshabilita servicios no esenciales de telemetría, mapas y modo demo (`DiagTrack`, `dmwappushservice`, `MapsBroker`, `RetailDemo`). | Essential Tweaks |
 | `WPFTweaksTele` | Deshabilita servicios y tareas programadas de telemetría adicionales. | Essential Tweaks |
-| `WPFTweaksActivity` | Desactiva el historial de actividades de Windows Timeline. | Essential Tweaks |
 | `WPFTweaksLocation` | Desactiva el seguimiento de ubicación y sensores. | Essential Tweaks |
-| `WPFTweaksDiskCleanup` | Limpieza automatizada de disco del sistema. | Essential Tweaks |
-| `WPFTweaksDeleteTempFiles` | Eliminación profunda de archivos temporales residuales. | Essential Tweaks |
 
 ### 2. En la Nueva Pestaña Dedicada: `Standard Tweaks`
 En la barra superior de pestañas se ha agregado una nueva sección **`Standard Tweaks`** (accesible mediante el atajo de teclado `S` o el botón en el panel de Tweaks) que incluye:
@@ -119,6 +116,18 @@ Para compilar y lanzar inmediatamente la interfaz:
 ```powershell
 .\Compile.ps1 -Run
 ```
+
+Para correr los tests (PowerShell 7 y Pester 5.8.0):
+
+```powershell
+Invoke-Pester -Path 'pester/*.Tests.ps1' -Output Detailed
+```
+
+### Publicación automática
+
+Cada push y pull request ejecuta el workflow **Build and test** (`.github/workflows/build.yaml`) en Windows: compila `winutil.ps1` y corre todos los tests. Si un push a `main` pasa los tests, el workflow sube el `winutil.ps1` compilado a `main`, que es el que descarga `irm ... | iex`.
+
+Por eso **no subas tu `winutil.ps1` compilado localmente**: es solo para probar. `hacer_push.bat` lo descarta y trae primero lo que publicó GitHub Actions antes de hacer push.
 
 ---
 

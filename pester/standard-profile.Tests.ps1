@@ -83,6 +83,36 @@ Describe "Standard and Office presets" {
         }
     }
 
+    It "do not write one registry value twice with different data" {
+        # The run order follows the selection, not the preset, so the last write would be arbitrary
+        $preset = Get-WinUtilConfigObject -Name "preset"
+        $tweaks = Get-WinUtilConfigObject -Name "tweaks"
+
+        foreach ($presetName in @("Standard", "Office")) {
+            $claims = @{}
+            foreach ($tweakName in @($preset.$presetName)) {
+                foreach ($registryEntry in @($tweaks.$tweakName.registry)) {
+                    if ($null -eq $registryEntry -or $registryEntry.Values) { continue }
+
+                    $key = "$($registryEntry.Path)|$($registryEntry.Name)"
+                    if (-not $claims.ContainsKey($key)) {
+                        $claims[$key] = @{}
+                    }
+                    $claims[$key][$tweakName] = [string]$registryEntry.Value
+                }
+            }
+
+            $conflicts = @(
+                foreach ($key in $claims.Keys) {
+                    if (@($claims[$key].Values | Select-Object -Unique).Count -gt 1) {
+                        "${presetName}: $key = " + (($claims[$key].GetEnumerator() | Sort-Object Key | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join ", ")
+                    }
+                }
+            )
+            $conflicts | Should -BeNullOrEmpty
+        }
+    }
+
     It "leave the Ultimate Performance plan out of Standard" {
         # The plan keeps the CPU at full clocks, which on a laptop costs battery and heat
         $preset = Get-WinUtilConfigObject -Name "preset"
